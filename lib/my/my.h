@@ -27,5 +27,6 @@ void my_printf(char *str, ...);
 void my_free_arr(char **arr, int start);
 int my_btoi(char *bin);
 char *clean_bin(char *bin);
+char *my_str_c_copy(char const *str, char c);
 
 #endif /* !MY_H_ */

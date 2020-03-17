@@ -5,7 +5,19 @@
 ** main
 */
 
+#include <stdlib.h>
+#include "tetris.h"
+
+void display(list_t *list)
+{
+    for (list_t *temp = list; temp != NULL; temp = temp->next)
+        printf("name == %s\n", temp->buffer);
+}
+
 int main(void)
 {
-    return (84);
+    list_t *list = NULL;
+    int ret = open_folder(&list);
+    display(list);
+    return (ret == 0 ? 0 : 84);
 }

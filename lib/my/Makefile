@@ -24,6 +24,10 @@ SRC	=	my_getnbr.c			\
 		binary_convert.c	\
 		clean_bin.c 		\
 		my_clean_str.c 		\
+		my_strncat.c 		\
+		my_strcat.c			\
+		my_strdup.c 		\
+		my_str_c_copy.c 	\
 
 OBJ	=	$(SRC:.c=.o)
 
