@@ -7,6 +7,10 @@
 
 SRC	= 	src/main.c			\
 		src/open_folder.c 	\
+		src/info.c 			\
+		src/error_tetri.c 	\
+		src/display.c 		\
+		src/sorting.c 		\
 
 OBJ	=	$(SRC:.c=.o)
 

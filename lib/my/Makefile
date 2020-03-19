@@ -28,6 +28,7 @@ SRC	=	my_getnbr.c			\
 		my_strcat.c			\
 		my_strdup.c 		\
 		my_str_c_copy.c 	\
+		my_epur_str.c 		\
 
 OBJ	=	$(SRC:.c=.o)
 

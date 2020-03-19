@@ -35,15 +35,17 @@ int open_file(list_t **list)
     char *filepath;
 
     for (list_t *temp = *list; temp != NULL; temp = temp->next) {
-        filepath = my_strcat("tetriminos/", temp->filepath);
+        filepath = my_strcat("tetriminos/", temp->info.filepath);
         fd = open(filepath, O_RDONLY);
         free(filepath);
         if (fd == -1)
             return (-1);
         size = read(fd, buff, 255);
+        if (size == -1)
+            return (-1);
         buff[size] = 0;
-        temp->buffer = load_buff(buff);
-        if (temp->buffer == NULL)
+        temp->info.buffer = load_buff(buff);
+        if (temp->info.buffer == NULL)
             return (-1);
     }
     return (0);
@@ -76,7 +78,7 @@ int read_folder(DIR *dir, list_t **list)
             element = malloc(sizeof(*element));
             if (element == NULL)
                 return (-1);
-            element->filepath = dent->d_name;
+            element->info.filepath = dent->d_name;
             element->next = *list;
             *list = element;
         }
