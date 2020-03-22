@@ -14,6 +14,7 @@ SRC	= 	src/main.c			\
 		src/optc.c		\
 		src/helper.c		\
 		src/debug_mode.c	\
+		src/my_itoa.c		\
 
 OBJ	=	$(SRC:.c=.o)
 
@@ -21,7 +22,7 @@ CFLAGS	=	-Wall -Wextra
 
 CPPFLAGS	=	-I./include
 
-LDFLAGS	=	-L./lib -lmy
+LDFLAGS	=	-L./lib -lmy -lncurses
 
 NAME	=	tetris
 
