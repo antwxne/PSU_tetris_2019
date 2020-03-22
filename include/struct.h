@@ -26,6 +26,13 @@ typedef struct info {
     char *shape;
 } info_t;
 
+typedef struct touch
+{
+    char **touching;
+    int print_debug;
+    int next_hide;
+}touch_t;
+
 typedef struct list
 {
     info_t info;

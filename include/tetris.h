@@ -15,5 +15,9 @@ void get_info(list_t **list);
 bool error_tetri(char *buff);
 void display_tetriminos(list_t *list);
 void sorting_list(list_t **list);
+void init_value(touch_t *touch);
+void find_arg(int ac, char **av, touch_t *touch);
+void helper(void);
+void display_debug_mode(touch_t *touch);
 
 #endif /* !TETRIS_H_ */

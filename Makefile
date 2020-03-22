@@ -11,6 +11,9 @@ SRC	= 	src/main.c			\
 		src/error_tetri.c 	\
 		src/display.c 		\
 		src/sorting.c 		\
+		src/optc.c		\
+		src/helper.c		\
+		src/debug_mode.c	\
 
 OBJ	=	$(SRC:.c=.o)
 
