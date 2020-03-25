@@ -17,7 +17,6 @@
 
 int open_file(list_t **list)
 {
-    int size = 0;
     char *filepath;
     size_t buff_size = 0;
 
@@ -53,7 +52,6 @@ int read_folder(DIR *dir, list_t **list)
 {
     list_t *element;
     struct dirent *dent;
-    struct stat sb;
 
     for (; (dent = readdir(dir)) != NULL;) {
         if (dent->d_type == 8 && check_name(dent->d_name)) {
@@ -68,15 +66,15 @@ int read_folder(DIR *dir, list_t **list)
     return (0);
 }
 
-int open_folder(list_t **list)
+int open_folder(list_t **list, DIR *dir)
 {
-    DIR *dir = opendir("./tetriminos");
-
     if (dir == NULL) {
         closedir(dir);
         return (-1);
     }
-    if (read_folder(dir, list) == -1)
+    if (read_folder(dir, list) == -1) {
+        closedir(dir);
         return (-1);
+    }
     return (open_file(list));
 }

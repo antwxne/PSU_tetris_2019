@@ -13,7 +13,6 @@ static void display_tetri(char **tetri)
 {
     for (int i = 0; tetri[i] != NULL; i++)
         my_putstr(tetri[i]);
-    my_putchar('\n');
 }
 
 void display_tetriminos(list_t *list)

@@ -11,6 +11,7 @@ SRC	= 	src/main.c			\
 		src/error_tetri.c 	\
 		src/display.c 		\
 		src/sorting.c 		\
+		src/free_tetris.c 	\
 
 OBJ	=	$(SRC:.c=.o)
 

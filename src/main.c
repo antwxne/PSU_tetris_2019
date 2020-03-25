@@ -5,17 +5,20 @@
 ** main
 */
 
-#include <stdlib.h>
 #include "tetris.h"
 #include "my.h"
 
 int main(void)
 {
     list_t *list = NULL;
-    int ret = open_folder(&list);
+    DIR *dir = opendir("./tetriminos");
+    int ret = open_folder(&list, dir);
+
     if (ret == 0) {
         get_info(&list);
         display_tetriminos(list);
+        free_tetriminos(list);
     }
+    closedir(dir);
     return (ret == 0 ? 0 : 84);
 }

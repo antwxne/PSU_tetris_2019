@@ -55,8 +55,7 @@ static inline char **get_shape(FILE *fd, size_tetri_t size)
         getline(&shape[i], &buff_size, fd);
     }
     shape[i] = NULL;
-    fclose(fd);
-    return (shape);
+    return (epur_shape(shape));
 }
 
 static inline int get_color(char *buff)
@@ -77,6 +76,7 @@ void get_info(list_t **list)
     for (list_t *temp = *list; temp != NULL; temp = temp->next) {
         temp->info.name = get_name(temp->info.filepath);
         temp->info.error = check_first_line(temp->info.buffer);
+        temp->info.shape = NULL;
         if (temp->info.error == true) {
             temp->info.size = get_size(temp->info.buffer);
             temp->info.color = get_color(temp->info.buffer);
@@ -84,6 +84,7 @@ void get_info(list_t **list)
             temp->info.error = check_shape(temp->info.shape);
         }
         free(temp->info.buffer);
+        fclose(temp->info.fd);
     }
     sorting_list(list);
 }
