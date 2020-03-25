@@ -19,5 +19,8 @@ void init_value(touch_t *touch);
 void find_arg(int ac, char **av, touch_t *touch);
 void helper(void);
 void display_debug_mode(touch_t *touch);
+char *my_itoa(int nb);
+void level_erro(char *optarg);
+int my_str_isnum(char *str);
 
 #endif /* !TETRIS_H_ */
