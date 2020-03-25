@@ -65,16 +65,7 @@ void display_debug_mode(touch_t *touch)
     int ret = open_folder(&list);
 
     my_printf("*** DEBUG MODE ***");
-    print_deb(touch);
-    my_printf("\nKey Quit :  %s", touch->touching[quit]);
-    my_printf("\nKey Pause :  %s", touch->touching[pose]);
-    my_printf("\nNext :  ");
-    if (touch->next_hide == 0)
-        my_printf("Yes");
-    else
-        my_printf("No");
-    my_printf("\nLevel :  %s", touch->touching[level]);
-    my_printf("\nSize :  %s\n", touch->touching[size]);
+    all_print(touch);
     if (ret == 0) {
         get_info(&list);
         display_tetriminos(list);

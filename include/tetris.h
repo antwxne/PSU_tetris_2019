@@ -26,5 +26,6 @@ void error_optarg(char *optarg);
 void error_size(char *str);
 void original_set(char *pos, char **keys, int change, int i);
 void print_deb(touch_t *touch);
+void all_print(touch_t *touch);
 
 #endif /* !TETRIS_H_ */
