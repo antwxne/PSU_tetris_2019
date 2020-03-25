@@ -15,10 +15,13 @@
 void error_size(char *str)
 {
     int i = 0;
-    
+
     while (str[i] != 0) {
-        if ((str[i] >= '0' && str[i] <= '9') || str[i] == ',')
+        if ((str[i] >= '0' && str[i] <= '9') || str[i] == ',') {
+            if (str[i] == ',')
+                str[i] = '*';
             i += 1;
+        }
         else
             exit(84);
     }
@@ -50,17 +53,19 @@ void original_set(char *pos, char **keys, int change, int i)
     if (change == 0) {
         my_printf("\nKey %s :  ^E%s", pos, &keys[i][1]);
     }
+    else if (my_strcmp(keys[i], " ") == 0)
+        my_printf("\nkey %s :  (space)", pos);
     else
         my_printf("\nKey %s :  %s", pos, keys[i]);
 }
 
 void display_debug_mode(touch_t *touch)
 {
+    list_t *list = NULL;
+    int ret = open_folder(&list);
+
     my_printf("*** DEBUG MODE ***");
-    original_set("Left", touch->touching, touch->change[0], left);
-    original_set("Right", touch->touching, touch->change[1], right);
-    original_set("Turn", touch->touching, touch->change[2], turn);
-    original_set("Drop", touch->touching, touch->change[3], drop);
+    print_deb(touch);
     my_printf("\nKey Quit :  %s", touch->touching[quit]);
     my_printf("\nKey Pause :  %s", touch->touching[pose]);
     my_printf("\nNext :  ");
@@ -69,5 +74,10 @@ void display_debug_mode(touch_t *touch)
     else
         my_printf("No");
     my_printf("\nLevel :  %s", touch->touching[level]);
-    my_printf("\nSize :  %s", touch->touching[size]);
+    my_printf("\nSize :  %s\n", touch->touching[size]);
+    if (ret == 0) {
+        get_info(&list);
+        display_tetriminos(list);
+    }
+    printf("Press any key to start Tetris\n");
 }

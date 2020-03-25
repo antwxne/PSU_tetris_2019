@@ -18,7 +18,7 @@
 void init_value(touch_t *touch)
 {
     int terminal = 0;
-    
+
     setupterm(NULL, 0, &terminal);
     touch->touching = malloc((sizeof(char *)) * 9);
     touch->change = malloc(sizeof(int) * 4);
@@ -96,7 +96,7 @@ void choosing(int opt, touch_t *touch)
         touch->print_debug = 1;
         break;
     case 'w':
-        touch->next_hide = 0;
+        touch->next_hide = 1;
         break;
     case 't':
         error_optarg(optarg);
@@ -128,7 +128,7 @@ void find_arg(int ac, char **av, touch_t *touch)
         {"debug", no_argument, NULL, 'D'},
         {0, 0, 0, 0}
     };
-    
+
     while (opt != -1) {
         opt = getopt_long(ac, av, string, long_options, &option_index);
         choosing(opt, touch);

@@ -23,5 +23,8 @@ char *my_itoa(int nb);
 void level_erro(char *optarg);
 int my_str_isnum(char *str);
 void error_optarg(char *optarg);
+void error_size(char *str);
+void original_set(char *pos, char **keys, int change, int i);
+void print_deb(touch_t *touch);
 
 #endif /* !TETRIS_H_ */
