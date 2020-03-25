@@ -9,21 +9,23 @@
 #define STRUCT_H_
 
 #include <stdbool.h>
+#include <stdio.h>
 
 typedef struct size {
-    int x;
-    int y;
+    unsigned int y;
+    unsigned int x;
 } size_tetri_t;
 
 typedef struct info {
     bool error;
+    FILE *fd;
     int color;
     struct stat *stat;
     size_tetri_t size;
     char *buffer;
     char *filepath;
     char *name;
-    char *shape;
+    char **shape;
 } info_t;
 
 typedef struct list

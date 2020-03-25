@@ -6,6 +6,7 @@
 */
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "struct.h"
 #include "tetris.h"
 #include "my.h"
@@ -32,6 +33,8 @@ static inline size_tetri_t get_size(char *buff)
     char *temp;
     int i = 0;
 
+    if (buff == NULL)
+        return ((size_tetri_t){0 , 0});
     size.x = my_getnbr(buff);
     for (; buff[i] != ' '; i++);
     temp = &buff[i];
@@ -39,22 +42,21 @@ static inline size_tetri_t get_size(char *buff)
     return (size);
 }
 
-static inline char *get_shape(char *buff)
+static inline char **get_shape(FILE *fd, size_tetri_t size)
 {
-    char *temp;
-    char *shape;
-    int start = 0;
-    int i = 0;
+    char **shape = malloc(sizeof(char *) * (size.y + 1));
+    unsigned int i = 0;
+    size_t buff_size = 0;
 
-    for (; buff[start] != '\n'; start++);
-    temp = &buff[start + 1];
-    shape = malloc(sizeof(char) * (my_strlen(temp) + 1));
     if (shape == NULL)
         return (NULL);
-    for (; temp[i] != '\0'; i++)
-        shape[i] = temp[i];
-    shape[i] = '\0';
-    return (my_epur_str(shape));
+    for (; i < size.y; i++) {
+        shape[i] = NULL;
+        getline(&shape[i], &buff_size, fd);
+    }
+    shape[i] = NULL;
+    fclose(fd);
+    return (shape);
 }
 
 static inline int get_color(char *buff)
@@ -74,11 +76,12 @@ void get_info(list_t **list)
 {
     for (list_t *temp = *list; temp != NULL; temp = temp->next) {
         temp->info.name = get_name(temp->info.filepath);
-        temp->info.error = error_tetri(temp->info.buffer);
+        temp->info.error = check_first_line(temp->info.buffer);
         if (temp->info.error == true) {
             temp->info.size = get_size(temp->info.buffer);
             temp->info.color = get_color(temp->info.buffer);
-            temp->info.shape = get_shape(temp->info.buffer);
+            temp->info.shape = get_shape(temp->info.fd, temp->info.size);
+            temp->info.error = check_shape(temp->info.shape);
         }
         free(temp->info.buffer);
     }

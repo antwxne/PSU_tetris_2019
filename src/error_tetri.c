@@ -7,11 +7,13 @@
 
 #include "struct.h"
 
-static bool check_first_line(char *line)
+bool check_first_line(char *line)
 {
     int space = 0;
 
-    for (int i = 0; line[i] != '\0' && line[i] != '\n'; i++) {
+    if (line == NULL)
+        return (false);
+    for (int i = 0; line[i] != '\0'; i++) {
         if (line [i] != ' ' && (!(line[i] >= '0' && line[i] <= '9')) &&
             line[i] != '\n')
             return (false);
@@ -21,22 +23,13 @@ static bool check_first_line(char *line)
     return (space == 2 ? true : false);
 }
 
-static bool check_shape(char *buff)
+bool check_shape(char **shape)
 {
-    char *shape;
-    int i = 0;
-
-    for (; buff[i] != '\n'; i++)
-        if (buff[i] == '\0')
-            return (false);
-    shape = &buff[i + 2];
-    for (int i = 0; shape[i] != '\0'; i++)
-        if (shape[i] != ' ' && shape[i] != '*' && shape[i] != '\n')
-            return (false);
+    if (shape == NULL)
+        return (false);
+    for (unsigned int y = 0; shape[y] != NULL; y++)
+        for (unsigned int x = 0; shape[y][x] != '\0'; x++)
+            if (shape[y][x] != ' ' && shape[y][x] != '*' && shape[y][x] != '\n')
+                return (false);
     return (true);
-}
-
-bool error_tetri(char *buff)
-{
-    return (check_shape(buff) && check_first_line(buff) ? true : false);
 }

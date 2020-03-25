@@ -11,42 +11,24 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <fcntl.h>
+#include <stdio.h>
 #include "struct.h"
 #include "my.h"
 
-char *load_buff(char *buff)
-{
-    char *dest = malloc(sizeof(char)*(my_strlen(buff) + 1));
-    int i = 0;
-
-    if (dest == NULL)
-        return (NULL);
-    for (; buff[i] != 0; i++)
-        dest[i] = buff[i];
-    dest[i] = 0;
-    return (dest);
-}
-
 int open_file(list_t **list)
 {
-    int fd = 0;
-    char buff[256];
     int size = 0;
     char *filepath;
+    size_t buff_size = 0;
 
     for (list_t *temp = *list; temp != NULL; temp = temp->next) {
         filepath = my_strcat("tetriminos/", temp->info.filepath);
-        fd = open(filepath, O_RDONLY);
+        temp->info.fd = fopen(filepath, "r");
         free(filepath);
-        if (fd == -1)
+        if (temp->info.fd == -1)
             return (-1);
-        size = read(fd, buff, 255);
-        if (size == -1)
-            return (-1);
-        buff[size] = 0;
-        temp->info.buffer = load_buff(buff);
-        if (temp->info.buffer == NULL)
-            return (-1);
+        temp->info.buffer = NULL;
+        getline(&temp->info.buffer, &buff_size, temp->info.fd);
     }
     return (0);
 }
