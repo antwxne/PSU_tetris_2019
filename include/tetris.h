@@ -22,5 +22,6 @@ void display_debug_mode(touch_t *touch);
 char *my_itoa(int nb);
 void level_erro(char *optarg);
 int my_str_isnum(char *str);
+void error_optarg(char *optarg);
 
 #endif /* !TETRIS_H_ */

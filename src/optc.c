@@ -18,27 +18,68 @@
 void init_value(touch_t *touch)
 {
     int terminal = 0;
-
+    
     setupterm(NULL, 0, &terminal);
     touch->touching = malloc((sizeof(char *)) * 9);
-    touch->touching[left] = "0";
-    touch->touching[right] = "0";
-    touch->touching[turn] = "";
-    touch->touching[drop] = "0";
+    touch->change = malloc(sizeof(int) * 4);
+    touch->change[0] = 0;
+    touch->change[1] = 0;
+    touch->change[2] = 0;
+    touch->change[3] = 0;
+    touch->touching[left] = tigetstr("kcub1");
+    touch->touching[right] = tigetstr("kcuf1");
+    touch->touching[turn] = tigetstr("kcuu1");
+    touch->touching[drop] = tigetstr("kcud1");
     touch->touching[quit] = "q";
-    touch->touching[pose] = "0";
+    touch->touching[pose] = "(space)";
     touch->touching[level] = "1";
     touch->touching[size] = "20*10";
-    printf("%s\n", tigetstr("kcub1"));
     touch->print_debug = 0;
     touch->next_hide = 0;
+}
+
+void choosing3(int opt, touch_t *touch)
+{
+    switch(opt) {
+    case 'd':
+        error_optarg(optarg);
+        touch->touching[drop] = optarg;
+        touch->change[3] = 1;
+        break;
+    case 'q':
+        error_optarg(optarg);
+        touch->touching[quit] = optarg;
+        break;
+    case 'p':
+        error_optarg(optarg);
+        touch->touching[pose] = optarg;
+        break;
+    case 'm':
+        error_size(optarg);
+        touch->touching[size] = optarg;
+        break;
+    }
 }
 
 void choosing2(int opt, touch_t *touch)
 {
     switch(opt) {
     case 'L':
+        level_erro(optarg);
         touch->touching[level] = optarg;
+        break;
+    case 'l':
+        error_optarg(optarg);
+        touch->touching[left] = optarg;
+        touch->change[0] = 1;
+        break;
+    case 'r':
+        error_optarg(optarg);
+        touch->touching[right] = optarg;
+        touch->change[1] = 1;
+        break;
+    default:
+        choosing3(opt, touch);
         break;
     }
 }
@@ -57,6 +98,11 @@ void choosing(int opt, touch_t *touch)
     case 'w':
         touch->next_hide = 0;
         break;
+    case 't':
+        error_optarg(optarg);
+        touch->touching[turn] = optarg;
+        touch->change[2] = 1;
+        break;
     default:
         choosing2(opt, touch);
         break;
@@ -68,7 +114,7 @@ void find_arg(int ac, char **av, touch_t *touch)
     int opt = 0;
     int option_index = 0;
     char *string = "hwDL:l:r:t:d:q:p:m:";
-    struct option long_options [] = {
+    const struct option long_options [12] = {
         {"help", no_argument, NULL, 'h'},
         {"level=", required_argument, NULL, 'L'},
         {"key-left=", required_argument, NULL, 'l'},
@@ -79,9 +125,10 @@ void find_arg(int ac, char **av, touch_t *touch)
         {"key-pause=", required_argument, NULL, 'p'},
         {"map-size=", required_argument, NULL, 'm'},
         {"without-next", no_argument, NULL, 'w'},
-        {"debug", no_argument, NULL, 'D'}
+        {"debug", no_argument, NULL, 'D'},
+        {0, 0, 0, 0}
     };
-
+    
     while (opt != -1) {
         opt = getopt_long(ac, av, string, long_options, &option_index);
         choosing(opt, touch);
