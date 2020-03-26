@@ -29,6 +29,8 @@ SRC	=	my_getnbr.c			\
 		my_strdup.c 		\
 		my_str_c_copy.c 	\
 		epur_shape.c 		\
+		my_itoa.c			\
+		my_str_isnum.c		\
 
 OBJ	=	$(SRC:.c=.o)
 

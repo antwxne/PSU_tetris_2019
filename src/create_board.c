@@ -6,10 +6,8 @@
 */
 
 #include <stdlib.h>
-#include <criterion/criterion.h>
-/* #include "my.h" */
 
-char *top_end_line(int length)
+static char *top_end_line(int length)
 {
     char *dest = malloc(sizeof(char)*length+1);
 
@@ -23,7 +21,7 @@ char *top_end_line(int length)
     return (dest);
 }
 
-char *line(int length)
+static char *line(int length)
 {
     char *dest = malloc(sizeof(char)*length+1);
 

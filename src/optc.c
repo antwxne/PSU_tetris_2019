@@ -15,6 +15,21 @@
 #include "tetris.h"
 #include "struct.h"
 
+static const struct option long_options [12] = {
+        {"help", no_argument, NULL, 'h'},
+        {"level=", required_argument, NULL, 'L'},
+        {"key-left=", required_argument, NULL, 'l'},
+        {"key-right=", required_argument, NULL, 'r'},
+        {"key-turn=", required_argument, NULL, 't'},
+        {"key-drop=", required_argument, NULL, 'd'},
+        {"key-quit=", required_argument, NULL, 'q'},
+        {"key-pause=", required_argument, NULL, 'p'},
+        {"map-size=", required_argument, NULL, 'm'},
+        {"without-next", no_argument, NULL, 'w'},
+        {"debug", no_argument, NULL, 'D'},
+        {0, 0, 0, 0}
+};
+
 void init_value(touch_t *touch)
 {
     int terminal = 0;
@@ -38,7 +53,7 @@ void init_value(touch_t *touch)
     touch->next_hide = 0;
 }
 
-void choosing3(int opt, touch_t *touch)
+static void choosing3(int opt, touch_t *touch)
 {
     switch(opt) {
     case 'd':
@@ -61,7 +76,7 @@ void choosing3(int opt, touch_t *touch)
     }
 }
 
-void choosing2(int opt, touch_t *touch)
+static void choosing2(int opt, touch_t *touch)
 {
     switch(opt) {
     case 'L':
@@ -84,7 +99,7 @@ void choosing2(int opt, touch_t *touch)
     }
 }
 
-void choosing(int opt, touch_t *touch)
+static void choosing(int opt, touch_t *touch)
 {
     if (opt == -1 && touch->print_debug == 1)
         display_debug_mode(touch);
@@ -114,20 +129,6 @@ void find_arg(int ac, char **av, touch_t *touch)
     int opt = 0;
     int option_index = 0;
     char *string = "hwDL:l:r:t:d:q:p:m:";
-    const struct option long_options [12] = {
-        {"help", no_argument, NULL, 'h'},
-        {"level=", required_argument, NULL, 'L'},
-        {"key-left=", required_argument, NULL, 'l'},
-        {"key-right=", required_argument, NULL, 'r'},
-        {"key-turn=", required_argument, NULL, 't'},
-        {"key-drop=", required_argument, NULL, 'd'},
-        {"key-quit=", required_argument, NULL, 'q'},
-        {"key-pause=", required_argument, NULL, 'p'},
-        {"map-size=", required_argument, NULL, 'm'},
-        {"without-next", no_argument, NULL, 'w'},
-        {"debug", no_argument, NULL, 'D'},
-        {0, 0, 0, 0}
-    };
 
     while (opt != -1) {
         opt = getopt_long(ac, av, string, long_options, &option_index);

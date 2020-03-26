@@ -12,11 +12,9 @@ SRC	= 	src/main.c			\
 		src/display.c 		\
 		src/sorting.c 		\
 		src/free_tetris.c 	\
-		src/optc.c		\
+		src/optc.c			\
 		src/helper.c		\
 		src/debug_mode.c	\
-		src/my_itoa.c		\
-		src/my_str_isnum.c	\
 		src/print_debug.c	\
 
 OBJ	=	$(SRC:.c=.o)

@@ -14,8 +14,9 @@ char *my_itoa(int nb)
     int i = 0;
     int bool = 0;
 
-    if (nb < 0)
-        bool = 1;
+    if (dest == NULL)
+        return (NULL);
+    bool = nb < 0 ? 1 : 0;
     while (nb != 0) {
         dest[i] = (nb%10)+'0';
         nb /= 10;

@@ -11,7 +11,7 @@
 #include "tetris.h"
 #include "my.h"
 
-static inline char *get_name(char *filepath)
+static char *get_name(char *filepath)
 {
     int i = 0;
     int len = 0;
@@ -27,7 +27,7 @@ static inline char *get_name(char *filepath)
     return (dest);
 }
 
-static inline size_tetri_t get_size(char *buff)
+static size_tetri_t get_size(char *buff)
 {
     size_tetri_t size = {0, 0};
     char *temp;
@@ -42,7 +42,7 @@ static inline size_tetri_t get_size(char *buff)
     return (size);
 }
 
-static inline char **get_shape(FILE *fd, size_tetri_t size)
+static char **get_shape(FILE *fd, size_tetri_t size)
 {
     char **shape = malloc(sizeof(char *) * (size.y + 1));
     unsigned int i = 0;
@@ -58,7 +58,7 @@ static inline char **get_shape(FILE *fd, size_tetri_t size)
     return (epur_shape(shape));
 }
 
-static inline int get_color(char *buff)
+static int get_color(char *buff)
 {
     char *temp;
     int color;

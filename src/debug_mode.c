@@ -50,7 +50,6 @@ void error_optarg(char *optarg)
         optarg[0] = '^';
         optarg[1] = 'E';
     }
-
 }
 
 void original_set(char *pos, char **keys, int change, int i)
@@ -63,16 +62,17 @@ void original_set(char *pos, char **keys, int change, int i)
         my_printf("\nKey %s :  %s", pos, keys[i]);
 }
 
-void display_debug_mode(touch_t *touch)
+int display_debug_mode(touch_t *touch)
 {
     list_t *list = NULL;
-    int ret = open_folder(&list);
+    DIR *dir = opendir("./tetriminos");
 
+    if (open_folder(&list, dir) == -1)
+        return (-1);
     my_printf("*** DEBUG MODE ***");
     all_print(touch);
-    if (ret == 0) {
-        get_info(&list);
-        display_tetriminos(list);
-    }
+    get_info(&list);
+    display_tetriminos(list);
     my_printf("Press any key to start Tetris\n");
+    return (0);
 }
