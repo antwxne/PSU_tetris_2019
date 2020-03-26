@@ -21,7 +21,7 @@ void display_tetriminos(list_t *list);
 void sorting_list(list_t **list);
 void free_tetriminos(list_t *list);
 void init_value(touch_t *touch);
-void find_arg(int ac, char **av, touch_t *touch);
+int find_arg(int ac, char **av, touch_t *touch);
 void helper(void);
 int display_debug_mode(touch_t *touch);
 char *my_itoa(int nb);

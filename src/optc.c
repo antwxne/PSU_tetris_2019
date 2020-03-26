@@ -101,8 +101,7 @@ static void choosing2(int opt, touch_t *touch)
 
 static void choosing(int opt, touch_t *touch)
 {
-    if (opt == -1 && touch->print_debug == 1)
-        display_debug_mode(touch);
+  
     switch(opt) {
     case 'h':
         helper();
@@ -124,7 +123,7 @@ static void choosing(int opt, touch_t *touch)
     }
 }
 
-void find_arg(int ac, char **av, touch_t *touch)
+int find_arg(int ac, char **av, touch_t *touch)
 {
     int opt = 0;
     int option_index = 0;
@@ -132,6 +131,10 @@ void find_arg(int ac, char **av, touch_t *touch)
 
     while (opt != -1) {
         opt = getopt_long(ac, av, string, long_options, &option_index);
+        if (opt == -1 && touch->print_debug == 1)
+            if (display_debug_mode(touch) == -1)
+                return 84;
         choosing(opt, touch);
     }
+    return 0;
 }

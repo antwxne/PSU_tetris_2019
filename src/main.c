@@ -13,6 +13,7 @@ int main(int ac, char **av)
     touch_t touch;
 
     init_value(&touch);
-    find_arg(ac, av, &touch);
+    if (find_arg(ac, av, &touch) == 84)
+        return 84;
     return 0;
 }
