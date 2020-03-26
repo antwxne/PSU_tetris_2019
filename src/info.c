@@ -82,6 +82,7 @@ void get_info(list_t **list)
             temp->info.color = get_color(temp->info.buffer);
             temp->info.shape = get_shape(temp->info.fd, temp->info.size);
             temp->info.error = check_shape(temp->info.shape);
+            temp->info.error = check_size(temp->info.shape, temp->info.size);
         }
         free(temp->info.buffer);
         fclose(temp->info.fd);

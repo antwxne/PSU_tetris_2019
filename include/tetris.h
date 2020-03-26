@@ -17,6 +17,7 @@ int open_folder(list_t **list, DIR *dir);
 void get_info(list_t **list);
 bool check_first_line(char *line);
 bool check_shape(char **shape);
+bool check_size(char **shape, size_tetri_t size);
 void display_tetriminos(list_t *list);
 void sorting_list(list_t **list);
 void free_tetriminos(list_t *list);

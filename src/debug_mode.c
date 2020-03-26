@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <curses.h>
 #include "my.h"
 #include "tetris.h"
 #include "struct.h"
@@ -67,7 +68,7 @@ int display_debug_mode(touch_t *touch)
     list_t *list = NULL;
     DIR *dir = opendir("./tetriminos");
 
-    if (open_folder(&list, dir) == -1)
+    if (open_folder(&list, dir) == -1 || list == NULL)
         return (-1);
     my_printf("*** DEBUG MODE ***");
     all_print(touch);
