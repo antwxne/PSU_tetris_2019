@@ -23,7 +23,7 @@ void sorting_list(list_t **list)
     list_t *stop = NULL;
     list_t *temp;
 
-    if (list == NULL)
+    if (*list == NULL)
         return;
     do {
         sort = false;
