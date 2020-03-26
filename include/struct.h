@@ -11,6 +11,17 @@
 #include <stdbool.h>
 #include <stdio.h>
 
+enum keys{
+    left,
+    right,
+    turn,
+    drop,
+    quit,
+    pose,
+    level,
+    size,
+};
+
 typedef struct size {
     unsigned int y;
     unsigned int x;
@@ -27,6 +38,15 @@ typedef struct info {
     char *name;
     char **shape;
 } info_t;
+
+typedef struct touch
+{
+    enum keys key;
+    char **touching;
+    int *change;
+    int print_debug;
+    int next_hide;
+}touch_t;
 
 typedef struct list
 {
