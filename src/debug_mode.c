@@ -44,15 +44,19 @@ void error_optarg(char *optarg)
 
     if (new != 1 && new != 4)
         exit(84);
-    if (new == 4 && !(optarg[0] == '^' && optarg[1] == 'E'))
+    if (new == 4 && !(optarg[0] == '2' && optarg[1] == '7'))
         exit(84);
+    if (optarg[0] == '2' && optarg[1] == '7') {
+        optarg[0] = '^';
+        optarg[1] = 'E';
+    }
+
 }
 
 void original_set(char *pos, char **keys, int change, int i)
 {
-    if (change == 0) {
+    if (change == 0)
         my_printf("\nKey %s :  ^E%s", pos, &keys[i][1]);
-    }
     else if (my_strcmp(keys[i], " ") == 0)
         my_printf("\nkey %s :  (space)", pos);
     else
@@ -70,5 +74,5 @@ void display_debug_mode(touch_t *touch)
         get_info(&list);
         display_tetriminos(list);
     }
-    printf("Press any key to start Tetris\n");
+    my_printf("Press any key to start Tetris\n");
 }
