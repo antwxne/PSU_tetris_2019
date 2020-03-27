@@ -22,9 +22,9 @@ void display_tetriminos(list_t *list);
 void sorting_list(list_t **list);
 void free_tetriminos(list_t *list);
 void init_value(touch_t *touch);
-int find_arg(int ac, char **av, touch_t *touch);
+int find_arg(int ac, char **av, touch_t *touch, list_t **list);
 void helper(void);
-int display_debug_mode(touch_t *touch);
+void display_debug_mode(touch_t *touch, list_t *list);
 char *my_itoa(int nb);
 void level_erro(char *optarg);
 int my_str_isnum(char *str);
@@ -33,5 +33,7 @@ void error_size(char *str);
 void original_set(char *pos, char **keys, int change, int i);
 void print_deb(touch_t *touch);
 void all_print(touch_t *touch);
+int game(touch_t touch, list_t *list);
+char **create_board(int length, int height);
 
 #endif /* !TETRIS_H_ */
