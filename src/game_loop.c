@@ -9,9 +9,7 @@
 #include "tetris.h"
 #include "my.h"
 
-tetrimino_t move_left(char const **board, tetrimino_t tetrimino);
-
-tetrimino_t move_right(char const **board, tetrimino_t tetrimino);
+char **move_left(char **board, size_tetri_t const pos, size_tetri_t const size);
 
 static void display_map(game_t game)
 {
@@ -41,10 +39,8 @@ int game_loop(game_t game, touch_t touch, list_t *list)
         int get = getch();
         if (get == 't')
             break;
-        // if (get == 'q')
-        //     tetri = move_left(game.board, tetri);
-        // if (get == 'd')
-        //     tetri = move_right(game.board, tetri);
+        if (get == 'q')
+            game.board = move_left(game.board, game.tetri.pos, game.tetri.size);
     }
     endwin();
     return (0);

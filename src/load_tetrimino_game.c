@@ -43,6 +43,16 @@ static int len_list(list_t *list)
     return (len);
 }
 
+static void load_info_tetri(size_tetri_t size_board, tetrimino_t *new_tetri,
+    info_t tetri)
+{
+    new_tetri->size = tetri.size;
+    new_tetri->color = tetri.color;
+    new_tetri->pos.y = 1;
+    new_tetri->pos.x = size_board.x / 2;
+    return (new_tetri);
+}
+
 int load_tetri(game_t *game, list_t *list)
 {
     list_t *temp = list;
@@ -56,5 +66,6 @@ int load_tetri(game_t *game, list_t *list)
     if (check_allowed(*game, temp->info.size) == -1)
         return (-1);
     game->board = insert_in_board(*game, (info_t const) temp->info);
+    load_info_tetri(game->size_b, &game->tetri, temp->info);
     return (0);
 }

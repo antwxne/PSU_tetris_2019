@@ -20,6 +20,7 @@ SRC	= 	src/main.c					\
 		src/game_loop.c 			\
 		src/create_board.c 			\
 		src/load_tetrimino_game.c 	\
+		src/move_tetri.c 			\
 
 OBJ	=	$(SRC:.c=.o)
 
