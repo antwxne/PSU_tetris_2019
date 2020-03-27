@@ -41,7 +41,7 @@ char **create_board(int length, int height)
 
     if (length <= 0 || height <= 0)
         return (NULL);
-    board = malloc(sizeof(char *)*(height+3));
+    board = malloc(sizeof(char *)*(height+2));
     if (board == NULL)
         return (NULL);
     board[0] = top_end_line(length + 2);

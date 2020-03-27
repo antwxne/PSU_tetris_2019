@@ -63,10 +63,17 @@ void original_set(char *pos, char **keys, int change, int i)
         my_printf("\nKey %s :  %s", pos, keys[i]);
 }
 
-void display_debug_mode(touch_t *touch, list_t *list)
+int display_debug_mode(touch_t *touch)
 {
+    list_t *list = NULL;
+    DIR *dir = opendir("./tetriminos");
+
+    if (open_folder(&list, dir) == -1 || list == NULL)
+        return (-1);
     my_printf("*** DEBUG MODE ***");
     all_print(touch);
+    get_info(&list);
     display_tetriminos(list);
     my_printf("Press any key to start Tetris\n");
+    return (0);
 }

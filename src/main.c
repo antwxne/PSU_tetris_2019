@@ -6,16 +6,14 @@
 */
 
 #include "tetris.h"
+#include "my.h"
 
 int main(int ac, char **av)
 {
     touch_t touch;
-    list_t *list = NULL;
 
-    srand(time(NULL));
     init_value(&touch);
-    if (find_arg(ac, av, &touch, &list) == 84)
+    if (find_arg(ac, av, &touch) == 84)
         return 84;
-    game(touch, list);
     return 0;
 }
