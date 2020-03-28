@@ -7,7 +7,7 @@
 
 #include <stdlib.h>
 
-static char *create_line(int size)
+static char *create_line(unsigned int size)
 {
     char *dest = malloc(sizeof(char) * (size + 1));
     unsigned int i = 0;
@@ -29,7 +29,7 @@ char **create_board(int length, int height)
     board = malloc(sizeof(char *)*(height+1));
     if (board == NULL)
         return (NULL);
-    for (int i = 1; i < height; i++)
+    for (int i = 0; i < height; i++)
         board[i] = create_line(length);
     board[height] = NULL;
     return (board);

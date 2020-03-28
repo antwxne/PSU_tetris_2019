@@ -12,14 +12,14 @@
 static void color_init(void)
 {
     start_color();
-    init_pair(0, COLOR_BLACK, COLOR_BLACK);
-    init_pair(1, COLOR_RED, COLOR_RED);
-    init_pair(2, COLOR_GREEN, COLOR_GREEN);
-    init_pair(3, COLOR_YELLOW, COLOR_YELLOW);
-    init_pair(4, COLOR_BLUE, COLOR_BLUE);
-    init_pair(5, COLOR_MAGENTA, COLOR_MAGENTA);
-    init_pair(6, COLOR_CYAN, COLOR_CYAN);
-    init_pair(7, COLOR_WHITE, COLOR_WHITE);
+    init_pair(0, 0, 0);
+    init_pair(1, 1, 1);
+    init_pair(2, 2, 2);
+    init_pair(3, 3, 3);
+    init_pair(4, 4, 4);
+    init_pair(5, 5, 5);
+    init_pair(6, 6, 6);
+    init_pair(7, 7, 7);
 }
 
 void init_window(WINDOW **te, WINDOW **w_tetri, game_t game)

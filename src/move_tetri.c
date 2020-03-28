@@ -5,23 +5,35 @@
 ** move_tetri
 */
 
+#include <curses.h>
 #include <stdlib.h>
 #include "struct.h"
 
-char **move_left(char **board, size_tetri_t const pos, size_tetri_t const size)
+size_tetri_t move_left(char const **board, size_tetri_t pos)
 {
-    unsigned int y = pos.y;
-    unsigned int x = pos.x;
-    unsigned int count = 0;
-    unsigned int count2 = 0;
+    if (pos.x <= 0)
+        return ((size_tetri_t) {pos.y, pos.x});
+    for (int i = 0; board[i] != NULL; i++)
+        if (board[i][pos.x - 1] != ' ')
+            return ((size_tetri_t) {pos.y, pos.x});
+    return ((size_tetri_t) {pos.y, pos.x - 1});
+}
 
-    for (unsigned int i = y; count < size.y; count++)
-        if (board[i][x] - 1 != ' ')
-            return (board);
-    for (count = 0; count < size.y; count++, y++) {
-        for (count2 = 0; count2 < size.x; count2++, x++)
-            board[y][x - 1] = board[y][x];
-        x = pos.x;
-    }
-    return (board);
+size_tetri_t move_right(char const **board, size_tetri_t pos, size_tetri_t size)
+{
+    for (int i = 0; board[i] != NULL; i++)
+        if (board[i][pos.x + size.x] != ' ')
+            return ((size_tetri_t) {pos.y, pos.x});
+    return ((size_tetri_t) {pos.y, pos.x + 1});
+}
+
+size_tetri_t move_down(char const **board, size_tetri_t s_b, size_tetri_t pos,
+    size_tetri_t size)
+{
+    if (pos.y + size.y + 1 > s_b.y)
+        return ((size_tetri_t) {pos.y, pos.x});
+    for (int i = pos.x; board[pos.y + size.y][i] != '\0' && i < size.x; i++)
+        if (board[pos.y + size.y + 1][i] != ' ')
+            return ((size_tetri_t) {pos.y, pos.x});
+    return ((size_tetri_t) {pos.y + 1, pos.x});
 }
