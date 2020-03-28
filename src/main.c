@@ -11,7 +11,6 @@
 int main(int ac, char **av)
 {
     touch_t touch;
-    int i = 0;
     
     init_value(&touch);
     if (find_arg(ac, av, &touch) == 84)

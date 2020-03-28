@@ -78,4 +78,5 @@ int switch_key(touch_t *touch, int getc)
         break;
     case touch->keys[pose]:
         break;*/
+    return 0;
 }
