@@ -5,6 +5,7 @@
 ** main
 */
 
+#include <time.h>
 #include "tetris.h"
 
 int main(int ac, char **av)
