@@ -33,18 +33,19 @@ static char **create_new_shape(char **shape)
 void loading_tetrimino(game_t *game, list_t const *list,
     int const len_list)
 {
-    int random;
+    int random = 0;
 
-    for (list_t *temp = list; 1;) {
+    for (list_t const *temp = list; 1; temp = list) {
         random = rand() % len_list;
-        for (int i = 0; i < random; i++, temp = temp->next);
-        if (temp->info.error) {
-            game->tetri.shape = create_new_shape(temp->info.shape);
-            game->tetri.size = temp->info.size;
-            game->tetri.color = temp->info.color;
-            game->tetri.pos.y = 0;
-            game->tetri.pos.x = (game->size_b.x / 2) - 1;
-            break;
-        }
+        for (int i = 0; i < random && temp != NULL; i++, temp = temp->next);
+        if (temp  != NULL)
+            if (temp->info.error) {
+                game->tetri.shape = create_new_shape(temp->info.shape);
+                game->tetri.size = temp->info.size;
+                game->tetri.color = temp->info.color;
+                game->tetri.pos.y = 0;
+                game->tetri.pos.x = (game->size_b.x / 2) - 1;
+                break;
+            }
     }
 }

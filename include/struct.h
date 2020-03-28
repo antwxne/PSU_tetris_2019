@@ -8,6 +8,7 @@
 #ifndef STRUCT_H_
 #define STRUCT_H_
 
+#include <curses.h>
 #include <stdbool.h>
 #include <stdio.h>
 
@@ -20,6 +21,11 @@ enum keys{
     pose,
     level,
     size,
+};
+
+enum window {
+    BOARD,
+    TETRIMINO,
 };
 
 typedef struct size {
@@ -69,6 +75,7 @@ typedef struct game {
     unsigned int score;
     unsigned int level;
     tetrimino_t tetri;
+    WINDOW **windows;
 } game_t;
 
 #endif /* !STRUCT_H_ */

@@ -4,8 +4,13 @@
 ** File description:
 ** main
 */
+<<<<<<< HEAD
 #include <time.h>
 #include <stdio.h>
+=======
+
+#include <time.h>
+>>>>>>> master
 #include "tetris.h"
 
 int main(int ac, char **av)
