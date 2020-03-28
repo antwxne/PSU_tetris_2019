@@ -50,6 +50,7 @@ typedef struct touch
     enum keys key;
     char **touching;
     int *change;
+    int *keys;
     int print_debug;
     int next_hide;
 }touch_t;

@@ -44,12 +44,8 @@ void error_optarg(char *optarg)
 
     if (new != 1 && new != 4)
         exit(84);
-    if (new == 4 && !(optarg[0] == '2' && optarg[1] == '7'))
+    if (new == 4 && !(optarg[0] == 27))
         exit(84);
-    if (optarg[0] == '2' && optarg[1] == '7') {
-        optarg[0] = '^';
-        optarg[1] = 'E';
-    }
 }
 
 void original_set(char *pos, char **keys, int change, int i)
@@ -68,4 +64,5 @@ void display_debug_mode(touch_t *touch, list_t *list)
     all_print(touch);
     display_tetriminos(list);
     my_printf("Press any key to start Tetris\n");
+    key_press();
 }

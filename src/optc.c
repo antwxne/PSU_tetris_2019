@@ -104,6 +104,7 @@ static void choosing(int opt, touch_t *touch)
     switch(opt) {
     case 'h':
         helper();
+        exit(0);
         break;
     case 'D':
         touch->print_debug = 1;
@@ -137,6 +138,8 @@ int find_arg(int ac, char **av, touch_t *touch, list_t **list)
         if (opt == -1 && touch->print_debug == 1)
             display_debug_mode(touch, *list);
         choosing(opt, touch);
+        if (opt == 63)
+            exit(84);
     }
     return 0;
 }

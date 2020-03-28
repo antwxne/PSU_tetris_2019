@@ -23,6 +23,8 @@ SRC	= 	src/main.c					\
 		src/move_tetri.c 			\
 		src/manage_game.c 			\
 		src/init.c 					\
+		src/key_press.c				\
+		src/wrong.c				\
 
 OBJ	=	$(SRC:.c=.o)
 
