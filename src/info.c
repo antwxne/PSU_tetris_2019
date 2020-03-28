@@ -75,6 +75,7 @@ void get_info(list_t **list)
 {
     for (list_t *temp = *list; temp != NULL; temp = temp->next) {
         temp->info.name = get_name(temp->info.filepath);
+        temp->info.error = false;
         temp->info.error = check_first_line(temp->info.buffer);
         temp->info.shape = NULL;
         if (temp->info.error == true) {

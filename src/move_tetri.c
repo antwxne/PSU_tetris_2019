@@ -32,7 +32,8 @@ size_tetri_t move_down(char const **board, size_tetri_t s_b, size_tetri_t pos,
 {
     if (pos.y + size.y + 1 > s_b.y)
         return ((size_tetri_t) {pos.y, pos.x});
-    for (int i = pos.x; board[pos.y + size.y][i] != '\0' && i < size.x; i++)
+    for (unsigned int i = pos.x; board[pos.y + size.y][i] != '\0' &&
+        i < size.x; i++)
         if (board[pos.y + size.y + 1][i] != ' ')
             return ((size_tetri_t) {pos.y, pos.x});
     return ((size_tetri_t) {pos.y + 1, pos.x});
