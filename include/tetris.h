@@ -43,7 +43,7 @@ void loading_tetrimino(game_t *game, list_t const *list,
 size_tetri_t move_left(char const **board, size_tetri_t pos);
 size_tetri_t move_right(char const **board, size_tetri_t pos,
     size_tetri_t size);
-size_tetri_t move_down(char const **board, size_tetri_t s_b, size_tetri_t pos,
+size_tetri_t move_down(char const **board, size_tetri_t pos,
     size_tetri_t size);
 void init_window(game_t *game);
 int game_loop(game_t game, touch_t touch, list_t *list);
