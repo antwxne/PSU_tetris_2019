@@ -16,6 +16,7 @@ SRC	= 	src/main.c			\
 		src/helper.c		\
 		src/debug_mode.c	\
 		src/print_debug.c	\
+		src/key_press.c		\
 
 OBJ	=	$(SRC:.c=.o)
 

@@ -33,5 +33,7 @@ void error_size(char *str);
 void original_set(char *pos, char **keys, int change, int i);
 void print_deb(touch_t *touch);
 void all_print(touch_t *touch);
+int key_press(void);
+int switch_key(touch_t *touch, int getc);
 
 #endif /* !TETRIS_H_ */
