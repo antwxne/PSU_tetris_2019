@@ -71,7 +71,7 @@ int switch_key(touch_t *touch, int get, game_t *game)
         game->tetri.pos,
         game->tetri.size);
     if (get == touch->keys[drop])
-        game->tetri.pos = move_down((char const **)game->board, game->size_b,
+        game->tetri.pos = move_down((char const **)game->board,
                 game->tetri.pos, game->tetri.size);
     return 0;
 }
