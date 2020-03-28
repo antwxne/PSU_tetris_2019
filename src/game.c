@@ -30,6 +30,8 @@ static game_t init_game(touch_t touch)
     game.level = 0;
     game.board = create_board(game.size_b.x, game.size_b.y);
     game.windows  = malloc(sizeof(WINDOW *)*2);
+    game.tetri = malloc(sizeof(tetrimino_t) * 2);
+    game.current = 0;
     return (game);
 }
 
@@ -37,7 +39,8 @@ int game(touch_t touch, list_t *list)
 {
     game_t game = init_game(touch);
 
-    if (game.board == NULL || game.windows == NULL)
+    if (game.board == NULL || game.windows == NULL
+        || game.tetri == NULL)
         return (-1);
     return (game_loop(game, touch, list));
 }

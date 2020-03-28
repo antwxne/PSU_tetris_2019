@@ -11,18 +11,21 @@
 
 void display_tetri_game(game_t game)
 {
+    int cur = game.current;
+
     for (int i = 0; game.board[i] != NULL; i++)
         mvwprintw(game.windows[BOARD], 1 + i, 1, game.board[i]);
-    wattron(game.windows[TETRIMINO], COLOR_PAIR(game.tetri.color));
-    for (int i = 0; game.tetri.shape[i] != NULL; i++)
-        mvwprintw(game.windows[TETRIMINO], game.tetri.pos.y+i, game.tetri.pos.x,
-            game.tetri.shape[i]);
-    wattroff(game.windows[TETRIMINO], COLOR_PAIR(game.tetri.color));
+    wattron(game.windows[TETRIMINO], COLOR_PAIR(game.tetri[cur].color));
+    for (int i = 0; game.tetri[cur].shape[i] != NULL; i++)
+        mvwprintw(game.windows[TETRIMINO], game.tetri[cur].pos.y+i,
+        game.tetri[cur].pos.x, game.tetri[cur].shape[i]);
+    wattroff(game.windows[TETRIMINO], COLOR_PAIR(game.tetri[cur].color));
 }
 
 int manage_keys(game_t *game, touch_t *touch)
 {
     int get_key = -1;
+    int cur = game->current;
 
     wtimeout(game->windows[TETRIMINO], 1000 - game->level * 10);
     get_key = wgetch(game->windows[TETRIMINO]);
@@ -30,8 +33,8 @@ int manage_keys(game_t *game, touch_t *touch)
     if (get_key == touch->keys[quit])
         return (1);
     if (get_key == -1)
-        game->tetri.pos = move_down((char const **)game->board,
-        game->tetri.pos, game->tetri.size);
+        game->tetri[cur].pos = move_down((char const **)game->board,
+        game->tetri[cur].pos, game->tetri[cur].size);
     return (0);
 }
 
@@ -45,3 +48,8 @@ bool is_blocked(char const **board, size_tetri_t pos, size_tetri_t size)
             return (false);
     return (true);
 }
+
+// void manage_game(game_t *game, list_t const *list)
+// {
+//     if 
+// }
