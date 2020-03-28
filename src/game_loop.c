@@ -37,26 +37,19 @@ static int len_list(list_t const *list)
 int game_loop(game_t game, touch_t touch, list_t *list)
 {
     int len = len_list(list);
+    int get = 0;
 
     loading_tetrimino(&game, list, len);
     init_window(&game);
     while (1) {
         manage_window(&game);
         display_tetri_game(game);
-        // met ta fonction pour les touches ici a la place des if
+        keypad(game.windows[TETRIMINO], TRUE);
         wtimeout(game.windows[TETRIMINO], 1000 - game.level * 10);
-        int get = wgetch(game.windows[TETRIMINO]);
-        if (get == 't')
+        get = wgetch(game.windows[TETRIMINO]);
+        switch_key( &touch, get, &game);
+        if (get == touch.keys[quit])
             break;
-        if (get == 'q')
-            game.tetri.pos = move_left((char const **)game.board,
-                game.tetri.pos);
-        if (get == 'd')
-            game.tetri.pos = move_right((char const **)game.board,
-            game.tetri.pos, game.tetri.size);
-        if (get == 's')
-            game.tetri.pos = move_down((char const **)game.board,
-            game.tetri.pos, game.tetri.size);
         if (get == -1)
             game.tetri.pos = move_down((char const **)game.board,
             game.tetri.pos, game.tetri.size);
