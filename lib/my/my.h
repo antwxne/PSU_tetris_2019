@@ -29,5 +29,6 @@ int my_btoi(char *bin);
 char *clean_bin(char *bin);
 char *my_str_c_copy(char const *str, char c);
 char **epur_shape(char **shape);
+char *my_strdup(char const *str);
 
 #endif /* !MY_H_ */

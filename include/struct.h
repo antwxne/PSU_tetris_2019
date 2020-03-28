@@ -54,4 +54,20 @@ typedef struct list
     struct list *next;
 } list_t;
 
+typedef struct tetrimino {
+    char **shape;
+    size_tetri_t size;
+    size_tetri_t pos;
+    int color;
+} tetrimino_t;
+
+typedef struct game {
+    char **board;
+    size_tetri_t size_b;
+    size_tetri_t size_w;
+    unsigned int score;
+    unsigned int level;
+    tetrimino_t tetri;
+} game_t;
+
 #endif /* !STRUCT_H_ */

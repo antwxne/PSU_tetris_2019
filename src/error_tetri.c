@@ -17,7 +17,7 @@ bool check_size(char **shape, size_tetri_t size)
         for ( i = 0; shape[get_y][i]; i++);
     get_x = get_x < i ? i : get_x;
     }
-    return (get_x - 1 == size.x && get_y == size.y ? true : false);
+    return (get_x == size.x && get_y == size.y ? true : false);
 }
 
 bool check_first_line(char *line)
