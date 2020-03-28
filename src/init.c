@@ -22,14 +22,15 @@ static void color_init(void)
     init_pair(7, 7, 7);
 }
 
-void init_window(WINDOW **te, WINDOW **w_tetri, game_t game)
+void init_window(game_t *game)
 {
     initscr();
     color_init();
-    *w_tetri = subwin(stdscr, game.size_b.y + 2, game.size_b.x + 2,
-    LINES / 2 - game.size_b.y / 2, COLS / 2 - game.size_b.x / 2);
-    *te = subwin(*w_tetri, game.size_b.y, game.size_b.x,
-    (LINES / 2 - game.size_b.y / 2) + 1, (COLS / 2 - game.size_b.x / 2) + 1);
+    game->windows[BOARD] = subwin(stdscr, game->size_b.y+2, game->size_b.x+2,
+    LINES / 2 - game->size_b.y / 2, COLS / 2 - game->size_b.x / 2);
+    game->windows[TETRIMINO] = subwin(game->windows[BOARD], game->size_b.y,
+    game->size_b.x, (LINES / 2 - game->size_b.y / 2) + 1,
+    (COLS / 2 - game->size_b.x / 2) + 1);
     keypad(stdscr, TRUE);
     curs_set(0);
     noecho();
