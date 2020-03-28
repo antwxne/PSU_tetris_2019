@@ -61,22 +61,7 @@ void take_key(touch_t *touch)
 }
 
 int switch_key(touch_t *touch, int getc)
-{/*
-    int *i = 0;
-    
+{
     take_key(touch);
-    switch(getc)
-    case touch->keys[left]:
-        break;
-    case touch->keys[right]:
-        break;
-    case touch->keys[turn]:
-        break;
-    case touch->keys[drop]:
-        break;
-    case touch->keys[quit]:
-        break;
-    case touch->keys[pose]:
-        break;*/
     return 0;
 }

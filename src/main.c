@@ -4,7 +4,8 @@
 ** File description:
 ** main
 */
-
+#include <time.h>
+#include <stdio.h>
 #include "tetris.h"
 
 int main(int ac, char **av)
@@ -15,10 +16,15 @@ int main(int ac, char **av)
 
     srand(time(NULL));
     init_value(&touch);
-    if (find_arg(ac, av, &touch, &list) == 84)
-        return 84;
-    key_press();
-//    switch_key(&touch, i);
-    game(touch, list);
+    if (ac == 1) {
+        find_arg(ac, av, &touch, &list);
+        game(touch, list);
+    }
+    else {
+        if (find_arg(ac, av, &touch, &list) == 84)
+            return 84;
+        key_press();
+        game(touch, list);
+    }
     return 0;
 }

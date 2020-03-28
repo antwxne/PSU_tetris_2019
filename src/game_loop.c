@@ -48,9 +48,13 @@ int game_loop(game_t game, touch_t touch, list_t *list)
         display_tetri_game(board, tetrimino, game);
         // met ta fonction pour les touches ici a la place des if
         int get = wgetch(tetrimino);
-        if (get == 't')
+        int a = getch();
+        switch_key(&touch, get);
+        if (get == touch.keys[quit])
             break;
-        if (get == 'q')
+        if (a == KEY_LEFT)
+            break;
+        if (get == KEY_LEFT)
             game.tetri.pos = move_left(game.board, game.tetri.pos);
         if (get == 'd')
             game.tetri.pos = move_right(game.board, game.tetri.pos,
