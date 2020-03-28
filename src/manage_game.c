@@ -19,12 +19,3 @@ void display_tetri_game(WINDOW *board, WINDOW *w_tetri, game_t game)
     wattroff(w_tetri, COLOR_PAIR(game.tetri.color));
 
 }
-
-// int block_tetri(WINDOW *w_tetri, tetrimino_t t)
-// {
-//     chtype *str;
-
-//     mvwinchstr(w_tetri, t.pos.y + t.size.y, 1, str);
-//     wprintw(stdscr, "%s end", str);
-//     return (0);
-// }

@@ -9,20 +9,6 @@
 #include "tetris.h"
 #include "my.h"
 
-// static void display_map(WINDOW *window, WINDOW *sub, game_t game)
-// {
-//     if (game.size_w.y > game.size_b.y && game.size_w.x > game.size_b.y) {
-//         for (unsigned int i = 0; game.board[i] != NULL; i++)
-//             mvwprintw(window, game.size_w.x / 2 - (game.size_b.y / 2) + i,
-//             (game.size_w.y - my_strlen(game.board[i])) / 2,
-//             "%s\n", game.board[i]);
-//             mvwprintw(sub, 0, 0, "%s\n", "pl");
-//     } else
-//         mvprintw(game.size_w.x / 2, (game.size_w.y - my_strlen(
-//             "the screen is too small to display the game"))/2,
-//             "%s\n", "the screen is too small to display the game");
-// }
-
 static void manage_window(WINDOW **te, WINDOW **w_tetri, game_t game)
 {
     int y = 0;
@@ -60,7 +46,7 @@ int game_loop(game_t game, touch_t touch, list_t *list)
         manage_window(&tetrimino, &board, game);
         usleep(1000);
         display_tetri_game(board, tetrimino, game);
-        //block_tetri(w_tetri, game.tetri);
+        // met ta fonction pour les touches ici a la place des if
         int get = wgetch(tetrimino);
         if (get == 't')
             break;
