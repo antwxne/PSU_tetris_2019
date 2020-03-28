@@ -11,7 +11,7 @@
 
 void helper(void)
 {
-    my_printf("Usage:  ./tetris [option]\n");
+    my_printf("Usage:  ./tetris [options]\n");
     my_printf("Options:\n");
     my_printf("--help                Display this help\n");
     my_printf("-L --level={num}      Start Tetris at level num (def: 1)\n");
