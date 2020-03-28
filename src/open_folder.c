@@ -25,7 +25,7 @@ int open_file(list_t **list)
         temp->info.fd = fopen(filepath, "r");
         free(filepath);
         if (temp->info.fd == NULL)
-            return (-1);
+            return -1;
         temp->info.buffer = NULL;
         getline(&temp->info.buffer, &buff_size, temp->info.fd);
     }
