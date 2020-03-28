@@ -22,8 +22,7 @@ void error_size(char *str)
             if (str[i] == ',')
                 str[i] = '*';
             i += 1;
-        }
-        else
+        } else
             exit(84);
     }
 }

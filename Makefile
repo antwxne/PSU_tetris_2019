@@ -21,6 +21,8 @@ SRC	= 	src/main.c					\
 		src/create_board.c 			\
 		src/load_tetrimino_game.c 	\
 		src/move_tetri.c 			\
+		src/manage_game.c 			\
+		src/init.c 					\
 
 OBJ	=	$(SRC:.c=.o)
 

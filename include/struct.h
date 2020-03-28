@@ -55,6 +55,7 @@ typedef struct list
 } list_t;
 
 typedef struct tetrimino {
+    char **shape;
     size_tetri_t size;
     size_tetri_t pos;
     int color;

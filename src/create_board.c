@@ -7,31 +7,16 @@
 
 #include <stdlib.h>
 
-static char *top_end_line(int length)
+static char *create_line(int size)
 {
-    char *dest = malloc(sizeof(char)*length+1);
+    char *dest = malloc(sizeof(char) * (size + 1));
+    unsigned int i = 0;
 
     if (dest == NULL)
         return (NULL);
-    dest[0] = '+';
-    for (int i = 1; i < length - 1; i++)
-        dest[i] = '-';
-    dest[length - 1] = '+';
-    dest[length] = 0;
-    return (dest);
-}
-
-static char *line(int length)
-{
-    char *dest = malloc(sizeof(char)*length+1);
-
-    if (dest == NULL)
-        return (NULL);
-    dest[0] = '|';
-    for (int i = 1; i < length - 1; i++)
+    for (; i < size; i++)
         dest[i] = ' ';
-    dest[length - 1] = '|';
-    dest[length] = 0;
+    dest[i] = '\0';
     return (dest);
 }
 
@@ -41,13 +26,11 @@ char **create_board(int length, int height)
 
     if (length <= 0 || height <= 0)
         return (NULL);
-    board = malloc(sizeof(char *)*(height+3));
+    board = malloc(sizeof(char *)*(height+1));
     if (board == NULL)
         return (NULL);
-    board[0] = top_end_line(length + 2);
-    for (int i = 1; i < height + 1; i++)
-        board[i] = line(length + 2);
-    board[height + 1] = top_end_line(length + 2);
-    board[height + 2] = NULL;
+    for (int i = 1; i < height; i++)
+        board[i] = create_line(length);
+    board[height] = NULL;
     return (board);
 }

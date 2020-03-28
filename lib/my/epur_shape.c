@@ -19,8 +19,7 @@ static char *adjust_str(char *str)
         return (NULL);
     for (; str[i] != '\0'; i++)
         dest[i] = str[i];
-    dest[i] = '\n';
-    dest[i + 1] = '\0';
+    dest[i] = '\0';
     free(str);
     return (dest);
 }

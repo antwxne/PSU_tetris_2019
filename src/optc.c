@@ -134,10 +134,9 @@ int find_arg(int ac, char **av, touch_t *touch, list_t **list)
     get_info(list);
     while (opt != -1) {
         opt = getopt_long(ac, av, string, long_options, &option_index);
-        if (opt == -1 && touch->print_debug == 1) {
+        if (opt == -1 && touch->print_debug == 1)
             display_debug_mode(touch, *list);
-            choosing(opt, touch);
-        }
+        choosing(opt, touch);
     }
     return 0;
 }

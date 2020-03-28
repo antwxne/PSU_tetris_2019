@@ -9,38 +9,68 @@
 #include "tetris.h"
 #include "my.h"
 
-char **move_left(char **board, size_tetri_t const pos, size_tetri_t const size);
+int block_tetri(WINDOW *w_tetri, tetrimino_t t);
 
-static void display_map(game_t game)
+void display_tetri(WINDOW *w_tetri, game_t game);
+
+void loading_tetrimino(game_t *game, list_t const *list,
+    int const len_list);
+
+static void display_map(WINDOW *window, WINDOW *sub, game_t game)
 {
-    if (game.size_w.y > game.size_b.y && game.size_w.x > game.size_b.y)
+    if (game.size_w.y > game.size_b.y && game.size_w.x > game.size_b.y) {
         for (unsigned int i = 0; game.board[i] != NULL; i++)
-            mvprintw(game.size_w.x / 2 - (game.size_b.y / 2) + i,
+            mvwprintw(window, game.size_w.x / 2 - (game.size_b.y / 2) + i,
             (game.size_w.y - my_strlen(game.board[i])) / 2,
             "%s\n", game.board[i]);
-    else
+            mvwprintw(sub, 0, 0, "%s\n", "pl");
+    } else
         mvprintw(game.size_w.x / 2, (game.size_w.y - my_strlen(
             "the screen is too small to display the game"))/2,
             "%s\n", "the screen is too small to display the game");
 }
 
+static void manage_window(WINDOW **te, WINDOW **w_tetri, game_t game)
+{
+    int y = 0;
+    int x = 0;
+
+    wclear(stdscr);
+    wclear(*w_tetri);
+    wclear(*te);
+    getmaxyx(stdscr, x, y);
+    wmove(*w_tetri, y / 2 - game.size_b.y / 2, x / 2 - game.size_b.x / 2);
+    wborder(*w_tetri, '|', '|', '-', '-', '+', '+', '+', '+');
+    wrefresh(*w_tetri);
+    wrefresh(*te);
+}
+
+static int len_list(list_t const *list)
+{
+    int len = 0;
+    list_t *temp = list;
+
+    for (; temp != NULL; temp = temp->next)
+        len++;
+    return (len);
+}
+
 int game_loop(game_t game, touch_t touch, list_t *list)
 {
-    load_tetri(&game, list);
-    initscr();
-    keypad(stdscr, TRUE);
+    WINDOW *board;
+    WINDOW *tetrimino;
+    int len = len_list(list);
+
+    loading_tetrimino(&game, list, len);
+    init_window(&tetrimino, &board, game);
     while (1) {
-        wclear(stdscr);
-        curs_set(0);
-        getmaxyx(stdscr, game.size_w.x, game.size_w.y);
-        display_map(game);
+        manage_window(&tetrimino, &board, game);
         usleep(1000);
-        refresh();
+        display_tetri(tetrimino, game);
+        //block_tetri(w_tetri, game.tetri);
         int get = getch();
         if (get == 't')
             break;
-        if (get == 'q')
-            game.board = move_left(game.board, game.tetri.pos, game.tetri.size);
     }
     endwin();
     return (0);
