@@ -4,13 +4,10 @@
 ** File description:
 ** main
 */
-<<<<<<< HEAD
-#include <time.h>
-#include <stdio.h>
-=======
 
 #include <time.h>
->>>>>>> master
+#include <stdio.h>
+#include <time.h>
 #include "tetris.h"
 
 int main(int ac, char **av)
@@ -21,15 +18,9 @@ int main(int ac, char **av)
 
     srand(time(NULL));
     init_value(&touch);
-    if (ac == 1) {
-        find_arg(ac, av, &touch, &list);
-        game(touch, list);
-    }
-    else {
-        if (find_arg(ac, av, &touch, &list) == 84)
-            return 84;
-        key_press();
-        game(touch, list);
-    }
+    check_wrong(ac, av);
+    if (find_arg(ac, av, &touch, &list) == 84)
+        return 84;
+    game(touch, list);
     return 0;
 }

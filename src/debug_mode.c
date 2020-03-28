@@ -64,4 +64,5 @@ void display_debug_mode(touch_t *touch, list_t *list)
     all_print(touch);
     display_tetriminos(list);
     my_printf("Press any key to start Tetris\n");
+    key_press();
 }
