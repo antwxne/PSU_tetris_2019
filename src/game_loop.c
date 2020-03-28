@@ -55,10 +55,10 @@ int game_loop(game_t game, touch_t touch, list_t *list)
             game.tetri.pos = move_right((char const **)game.board,
             game.tetri.pos, game.tetri.size);
         if (get == 's')
-            game.tetri.pos = move_down((char const **)game.board, game.size_b,
+            game.tetri.pos = move_down((char const **)game.board,
             game.tetri.pos, game.tetri.size);
         if (get == -1)
-            game.tetri.pos = move_down((char const **)game.board, game.size_b,
+            game.tetri.pos = move_down((char const **)game.board,
             game.tetri.pos, game.tetri.size);
         get = -1;
     }
