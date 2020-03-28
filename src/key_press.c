@@ -22,10 +22,10 @@ int key_press(void)
     if (str == NULL)
         return 84;
     tcgetattr(0, &termios);
-    termios.c_lflag&=~ICANON;
-    termios.c_lflag&=~INPCK;
-    termios.c_lflag&=~IXOFF;
-    termios.c_lflag&=~ECHO;
+    termios.c_lflag &= ~ICANON;
+    termios.c_lflag &= ~INPCK;
+    termios.c_lflag &= ~IXOFF;
+    termios.c_lflag &= ~ECHO;
     tcsetattr(0, TCSADRAIN, &termios);
     read(0, str, 1);
     return 0;
@@ -42,7 +42,6 @@ void egal_key(touch_t *touch, int i)
         touch->keys[i] = KEY_UP;
     if (touch->keys[i] == 'B')
         touch->keys[i] = KEY_DOWN;
-
 }
 
 void take_key(touch_t *touch)
@@ -71,7 +70,7 @@ int switch_key(touch_t *touch, int get, game_t *game)
         game->tetri.pos,
         game->tetri.size);
     if (get == touch->keys[drop])
-        game->tetri.pos = move_down((char const **)game->board, game->size_b,
+        game->tetri.pos = move_down((char const **)game->board,
                 game->tetri.pos, game->tetri.size);
     return 0;
 }

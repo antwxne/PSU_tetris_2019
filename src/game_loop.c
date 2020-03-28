@@ -37,23 +37,14 @@ static int len_list(list_t const *list)
 int game_loop(game_t game, touch_t touch, list_t *list)
 {
     int len = len_list(list);
-    int get = 0;
 
     loading_tetrimino(&game, list, len);
     init_window(&game);
     while (1) {
         manage_window(&game);
         display_tetri_game(game);
-        keypad(game.windows[TETRIMINO], TRUE);
-        wtimeout(game.windows[TETRIMINO], 1000 - game.level * 10);
-        get = wgetch(game.windows[TETRIMINO]);
-        switch_key( &touch, get, &game);
-        if (get == touch.keys[quit])
+        if (manage_keys(&game, &touch))
             break;
-        if (get == -1)
-            game.tetri.pos = move_down((char const **)game.board,
-            game.tetri.pos, game.tetri.size);
-        get = -1;
     }
     endwin();
     return (0);

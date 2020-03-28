@@ -49,5 +49,6 @@ size_tetri_t move_down(char const **board, size_tetri_t pos,
 int game_loop(game_t game, touch_t touch, list_t *list);
 void init_window(game_t *game);
 int switch_key(touch_t *touch, int get, game_t *game);
+int manage_keys(game_t *game, touch_t *touch);
 
 #endif /* !TETRIS_H_ */
