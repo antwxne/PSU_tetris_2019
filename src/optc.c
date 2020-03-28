@@ -101,7 +101,6 @@ static void choosing2(int opt, touch_t *touch)
 
 static void choosing(int opt, touch_t *touch)
 {
-  
     switch(opt) {
     case 'h':
         helper();
@@ -123,17 +122,20 @@ static void choosing(int opt, touch_t *touch)
     }
 }
 
-int find_arg(int ac, char **av, touch_t *touch)
+int find_arg(int ac, char **av, touch_t *touch, list_t **list)
 {
     int opt = 0;
     int option_index = 0;
     char *string = "hwDL:l:r:t:d:q:p:m:";
+    DIR *dir = opendir("./tetriminos");
 
+    if (open_folder(list, dir) == -1 || list == NULL)
+        return (-1);
+    get_info(list);
     while (opt != -1) {
         opt = getopt_long(ac, av, string, long_options, &option_index);
         if (opt == -1 && touch->print_debug == 1)
-            if (display_debug_mode(touch) == -1)
-                return 84;
+            display_debug_mode(touch, *list);
         choosing(opt, touch);
     }
     return 0;

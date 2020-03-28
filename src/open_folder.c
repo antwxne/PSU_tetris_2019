@@ -24,7 +24,7 @@ int open_file(list_t **list)
         filepath = my_strcat("tetriminos/", temp->info.filepath);
         temp->info.fd = fopen(filepath, "r");
         free(filepath);
-        if (temp->info.fd == -1)
+        if (temp->info.fd == NULL)
             return (-1);
         temp->info.buffer = NULL;
         getline(&temp->info.buffer, &buff_size, temp->info.fd);

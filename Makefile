@@ -5,17 +5,24 @@
 ## makefile
 ##
 
-SRC	= 	src/main.c			\
-		src/open_folder.c 	\
-		src/info.c 			\
-		src/error_tetri.c 	\
-		src/display.c 		\
-		src/sorting.c 		\
-		src/free_tetris.c 	\
-		src/optc.c			\
-		src/helper.c		\
-		src/debug_mode.c	\
-		src/print_debug.c	\
+SRC	= 	src/main.c					\
+		src/open_folder.c 			\
+		src/info.c 					\
+		src/error_tetri.c 			\
+		src/display.c 				\
+		src/sorting.c 				\
+		src/free_tetris.c 			\
+		src/optc.c					\
+		src/helper.c				\
+		src/debug_mode.c			\
+		src/print_debug.c			\
+		src/game.c 					\
+		src/game_loop.c 			\
+		src/create_board.c 			\
+		src/load_tetrimino_game.c 	\
+		src/move_tetri.c 			\
+		src/manage_game.c 			\
+		src/init.c 					\
 
 OBJ	=	$(SRC:.c=.o)
 

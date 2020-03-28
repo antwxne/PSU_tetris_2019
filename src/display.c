@@ -12,21 +12,11 @@
 static void display_tetri(char **tetri)
 {
     for (int i = 0; tetri[i] != NULL; i++)
-        my_putstr(tetri[i]);
-}
-
-static int len_list(list_t const *list)
-{
-    int len = 0;
-
-    for (list_t *temp = list; temp != NULL; temp = temp->next)
-        len++;
-    return (len);
+        my_printf("%s\n", tetri[i]);
 }
 
 void display_tetriminos(list_t *list)
 {
-    my_printf("Tetriminos : %d\n", len_list(list));
     for (list_t *temp = list; temp != NULL; temp = temp->next) {
         my_putstr("Tetriminos :  ");
         my_printf("Name %s :  ", temp->info.name);
