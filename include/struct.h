@@ -26,6 +26,8 @@ enum keys{
 enum window {
     BOARD,
     TETRIMINO,
+    NEXT,
+    INFO,
 };
 
 typedef struct size {

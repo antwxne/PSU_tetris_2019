@@ -11,17 +11,18 @@
 
 static void manage_window(game_t *game)
 {
-    int y = 0;
-    int x = 0;
-
     wclear(stdscr);
     wclear(game->windows[BOARD]);
     wclear(game->windows[TETRIMINO]);
-    getmaxyx(stdscr, x, y);
-    wmove(game->windows[BOARD], y/2-game->size_b.y/2, x/2-game->size_b.x/2);
+    wclear(game->windows[INFO]);
+    wclear(game->windows[NEXT]);
+    wborder(game->windows[INFO], '|', '|', '-', '-', '/', '\\', '\\', '/');
+    wborder(game->windows[NEXT], '|', '|', '-', '-', '+', '+', '+', '+');
     wborder(game->windows[BOARD], '|', '|', '-', '-', '+', '+', '+', '+');
     wrefresh(game->windows[BOARD]);
     wrefresh(game->windows[TETRIMINO]);
+    wrefresh(game->windows[INFO]);
+    wrefresh(game->windows[NEXT]);
     refresh();
 }
 
