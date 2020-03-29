@@ -51,6 +51,8 @@ void manage_game(game_t *game, list_t const *list)
             update_board(game, game->tetri[cur]);
             game->tetri[cur] = reload_tetri(*game, game->tetri[cur], list);
             game->current = game->current == 0 ? 1 : 0;
+            game->loose = is_blocked((int const **)game->board,
+                game->tetri[cur]);
         }
     game->board = remove_line(game->board, game);
 }

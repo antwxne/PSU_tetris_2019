@@ -29,9 +29,10 @@ static game_t init_game(touch_t touch)
     game.score = 0;
     game.level = 0;
     game.board = create_board(game.size_b.x, game.size_b.y);
-    game.windows  = malloc(sizeof(WINDOW *)*2);
-    game.tetri = malloc(sizeof(tetrimino_t) * 4);
+    game.windows  = malloc(sizeof(WINDOW *) * 4);
+    game.tetri = malloc(sizeof(tetrimino_t) * 2);
     game.current = 0;
+    game.loose = false;
     return (game);
 }
 
@@ -39,9 +40,9 @@ int game(touch_t touch, list_t *list)
 {
     game_t game = init_game(touch);
 
-    if (len_list(list) == 0)
-        exit(84);
     game.len_list = len_list(list);
+    if (game.len_list == 0)
+        exit(84);
     if (game.board == NULL || game.windows == NULL
         || game.tetri == NULL)
         return (-1);

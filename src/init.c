@@ -28,11 +28,12 @@ void init_window(game_t *game)
     color_init();
     game->windows[BOARD] = subwin(stdscr, game->size_b.y+2, game->size_b.x+2,
     LINES / 2 - game->size_b.y / 2, COLS / 2 - game->size_b.x / 2);
-    game->windows[NEXT] = subwin(stdscr, 0, 0, LINES, COLS);
-    game->windows[INFO] = subwin(stdscr, 200, 200, 200, 200);
     game->windows[TETRIMINO] = subwin(game->windows[BOARD], game->size_b.y,
     game->size_b.x, (LINES / 2 - game->size_b.y / 2) + 1,
     (COLS / 2 - game->size_b.x / 2) + 1);
+    game->windows[INFO] = subwin(stdscr, 20, 50, LINES / 2 - 10 , 0);
+    game->windows[NEXT] = subwin(stdscr, game->size_b.y+2, game->size_b.x+2,
+    LINES / 2 - game->size_b.y / 2 - 10, COLS / 2 + (game->size_b.x / 2) + 10);
     keypad(stdscr, TRUE);
     keypad(game->windows[TETRIMINO], TRUE);
     curs_set(0);

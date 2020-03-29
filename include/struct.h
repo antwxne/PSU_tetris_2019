@@ -80,6 +80,7 @@ typedef struct game {
     WINDOW **windows;
     int len_list;
     int current;
+    bool loose;
 } game_t;
 
 #endif /* !STRUCT_H_ */

@@ -12,17 +12,13 @@
 static void manage_window(game_t *game)
 {
     wclear(stdscr);
-    wclear(game->windows[BOARD]);
-    wclear(game->windows[TETRIMINO]);
-    wclear(game->windows[INFO]);
-    wclear(game->windows[NEXT]);
-    wborder(game->windows[INFO], '|', '|', '-', '-', '/', '\\', '\\', '/');
-    wborder(game->windows[NEXT], '|', '|', '-', '-', '+', '+', '+', '+');
     wborder(game->windows[BOARD], '|', '|', '-', '-', '+', '+', '+', '+');
-    wrefresh(game->windows[BOARD]);
-    wrefresh(game->windows[TETRIMINO]);
-    wrefresh(game->windows[INFO]);
-    wrefresh(game->windows[NEXT]);
+    wborder(game->windows[NEXT], '|', '|', '-', '-', '/', 'a', 's', '/');
+    wborder(game->windows[INFO], '|', '|', '-', '-', '/', 'd', 'f', '/');
+    for (int i = 0; i < 4; i++) {
+        touchwin(game->windows[i]);
+        wrefresh(game->windows[i]);
+    }
     refresh();
 }
 
@@ -31,14 +27,15 @@ int game_loop(game_t game, touch_t touch, list_t *list)
     game.tetri[0] = loading_tetrimino(game, list, game.len_list);
     game.tetri[1] = loading_tetrimino(game, list, game.len_list);
     init_window(&game);
-    while (1) {
-        manage_window(&game);
-        display_tetri_game(game);
+    manage_window(&game);
+    while (!game.loose) {
         manage_game(&game, list);
         display_tetri_game(game);
         if (manage_keys(&game, &touch))
             break;
+        manage_window(&game);
     }
     endwin();
+    my_putstr("You loose\n");
     return (0);
 }
