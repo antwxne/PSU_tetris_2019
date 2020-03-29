@@ -11,7 +11,7 @@
 
 static void manage_window(game_t *game)
 {
-    wclear(stdscr);
+    wclear(game->windows[BOARD]);
     wborder(game->windows[BOARD], '|', '|', '-', '-', '+', '+', '+', '+');
     wborder(game->windows[NEXT], '|', '|', '-', '-', '/', 'a', 's', '/');
     wborder(game->windows[INFO], '|', '|', '-', '-', '/', 'd', 'f', '/');
@@ -29,11 +29,12 @@ int game_loop(game_t game, touch_t touch, list_t *list)
     init_window(&game);
     manage_window(&game);
     while (!game.loose) {
+        manage_window(&game);
         manage_game(&game, list);
         display_tetri_game(game);
         if (manage_keys(&game, &touch))
             break;
-        manage_window(&game);
+        
     }
     endwin();
     my_putstr("You loose\n");

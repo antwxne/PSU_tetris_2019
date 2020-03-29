@@ -53,6 +53,7 @@ void manage_game(game_t *game, list_t const *list)
             game->current = game->current == 0 ? 1 : 0;
             game->loose = is_blocked((int const **)game->board,
                 game->tetri[cur]);
+            wclear(game->windows[NEXT]);
         }
     game->board = remove_line(game->board, game);
 }

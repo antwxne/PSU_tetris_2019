@@ -34,8 +34,23 @@ static void display_board(game_t game)
             }
 }
 
+static void display_next(game_t game)
+{
+    int cur = game.current == 0 ? 1 : 0;
+
+    mvwprintw(game.windows[NEXT], 1, game.size_b.x / 2 - 2, "NEXT");
+    wattron(game.windows[NEXT], COLOR_PAIR(game.tetri[cur].color));
+    for (int i = 0; game.tetri[cur].shape[i] != NULL; i++)
+        for (int x = 0; game.tetri[cur].shape[i][x] != '\0'; x++)
+            if (game.tetri[cur].shape[i][x] != ' ')
+                mvwprintw(game.windows[NEXT], 2 + i,
+                game.tetri[cur].pos.x + x, "%c", game.tetri[cur].shape[i][x]);
+    wattroff(game.windows[NEXT], COLOR_PAIR(game.tetri[cur].color));
+}
+
 void display_tetri_game(game_t game)
 {
     display_board(game);
     display_moving_tetri(game);
+    display_next(game);
 }
