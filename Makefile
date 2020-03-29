@@ -27,6 +27,7 @@ SRC	= 	src/main.c					\
 		src/wrong.c					\
 		src/update_board.c 			\
 		src/display_game.c 			\
+		src/remove_line.c 			\
 
 OBJ	=	$(SRC:.c=.o)
 
