@@ -52,4 +52,5 @@ void manage_game(game_t *game, list_t const *list)
             game->tetri[cur] = reload_tetri(*game, game->tetri[cur], list);
             game->current = game->current == 0 ? 1 : 0;
         }
+    game->board = remove_line(game->board, game);
 }

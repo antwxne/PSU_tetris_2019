@@ -51,5 +51,6 @@ int manage_keys(game_t *game, touch_t *touch);
 int len_list(list_t const *list);
 void update_board(game_t *game, tetrimino_t tetri);
 void manage_game(game_t *game, list_t const *list);
+char **remove_line(char **board, game_t *game);
 
 #endif /* !TETRIS_H_ */
