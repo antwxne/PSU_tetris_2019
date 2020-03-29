@@ -32,6 +32,7 @@ void init_window(game_t *game)
     game->size_b.x, (LINES / 2 - game->size_b.y / 2) + 1,
     (COLS / 2 - game->size_b.x / 2) + 1);
     keypad(stdscr, TRUE);
+    keypad(game->windows[TETRIMINO], TRUE);
     curs_set(0);
     noecho();
 }

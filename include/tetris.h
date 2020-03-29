@@ -39,16 +39,18 @@ int game(touch_t touch, list_t *list);
 char **create_board(int length, int height);
 int block_tetri(WINDOW *w_tetri, tetrimino_t t);
 void display_tetri_game(game_t game);
-void loading_tetrimino(game_t *game, list_t const *list,
+tetrimino_t loading_tetrimino(game_t game, list_t const *list,
     int const len_list);
-size_tetri_t move_left(char const **board, size_tetri_t pos);
-size_tetri_t move_right(char const **board, size_tetri_t pos,
-    size_tetri_t size);
-size_tetri_t move_down(char const **board, size_tetri_t pos,
-    size_tetri_t size);
+size_tetri_t move_left(char const **board, tetrimino_t tetri);
+size_tetri_t move_right(char const **board, tetrimino_t tetri);
+size_tetri_t move_down(char const **board, tetrimino_t tetri);
 int game_loop(game_t game, touch_t touch, list_t *list);
 void init_window(game_t *game);
 int switch_key(touch_t *touch, int get, game_t *game);
 void check_wrong(int ac, char **av);
+int manage_keys(game_t *game, touch_t *touch);
+int len_list(list_t const *list);
+void update_board(game_t *game, tetrimino_t tetri);
+void manage_game(game_t *game, list_t const *list);
 
 #endif /* !TETRIS_H_ */

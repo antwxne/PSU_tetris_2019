@@ -74,8 +74,10 @@ typedef struct game {
     size_tetri_t size_w;
     unsigned int score;
     unsigned int level;
-    tetrimino_t tetri;
+    tetrimino_t *tetri;
     WINDOW **windows;
+    int len_list;
+    int current;
 } game_t;
 
 #endif /* !STRUCT_H_ */
