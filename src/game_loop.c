@@ -31,7 +31,7 @@ int game_loop(game_t game, touch_t touch, list_t *list)
     while (!game.loose) {
         manage_window(&game);
         manage_game(&game, list);
-        display_tetri_game(game);
+        display_tetri_game(game, touch);
         if (manage_keys(&game, &touch))
             break;
         

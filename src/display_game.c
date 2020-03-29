@@ -55,10 +55,11 @@ static void display_info(game_t game)
     mvwprintw(game.windows[INFO], 16, 25 - 2, "SCORE : %u", game.score);
 }
 
-void display_tetri_game(game_t game)
+void display_tetri_game(game_t game, touch_t touch)
 {
     display_board(game);
     display_moving_tetri(game);
-    display_next(game);
+    if (touch.next_hide == 0)
+        display_next(game);
     display_info(game);
 }

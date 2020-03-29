@@ -38,7 +38,7 @@ int key_press(void);
 int game(touch_t touch, list_t *list);
 int **create_board(int length, int height);
 int block_tetri(WINDOW *w_tetri, tetrimino_t t);
-void display_tetri_game(game_t game);
+void display_tetri_game(game_t game, touch_t touch);
 tetrimino_t loading_tetrimino(game_t game, list_t const *list,
     int const len_list);
 size_tetri_t move_left(int const **board, tetrimino_t tetri);
