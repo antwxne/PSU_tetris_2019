@@ -24,7 +24,9 @@ SRC	= 	src/main.c					\
 		src/manage_game.c 			\
 		src/init.c 					\
 		src/key_press.c				\
-		src/wrong.c				\
+		src/wrong.c					\
+		src/update_board.c 			\
+		src/display_game.c 			\
 
 OBJ	=	$(SRC:.c=.o)
 

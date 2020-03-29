@@ -13,7 +13,7 @@
 int main(int ac, char **av)
 {
     touch_t touch;
-    
+
     list_t *list = NULL;
 
     srand(time(NULL));
