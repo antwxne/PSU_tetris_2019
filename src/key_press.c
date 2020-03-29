@@ -65,13 +65,13 @@ int switch_key(touch_t *touch, int get, game_t *game)
 
     take_key(touch);
     if (get == touch->keys[left])
-        game->tetri[cur].pos = move_left((char const **)game->board,
+        game->tetri[cur].pos = move_left((int const **)game->board,
         game->tetri[cur]);
     if (get == touch->keys[right])
-        game->tetri[cur].pos = move_right((char const **)game->board,
+        game->tetri[cur].pos = move_right((int const **)game->board,
         game->tetri[cur]);
     if (get == touch->keys[drop])
-        game->tetri[cur].pos = move_down((char const **)game->board,
+        game->tetri[cur].pos = move_down((int const **)game->board,
             game->tetri[cur]);
     return 0;
 }

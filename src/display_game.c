@@ -24,13 +24,14 @@ static void display_moving_tetri(game_t game)
 
 static void display_board(game_t game)
 {
-    wattron(game.windows[BOARD], COLOR_PAIR(COLOR_WHITE));
     for (int y = 0; game.board[y] != NULL; y++)
-        for (int x = 0; game.board[y][x] != '\0'; x++)
-            if (game.board[y][x] != ' ')
+        for (int x = 0; game.board[y][x] != -1; x++)
+            if (game.board[y][x] != 0) {
+                wattron(game.windows[BOARD], COLOR_PAIR(game.board[y][x]));
                 mvwprintw(game.windows[BOARD], 1+y, 1+x
-                , "%c", game.board[y][x]);
-    wattroff(game.windows[BOARD], COLOR_PAIR(COLOR_WHITE));
+                , "%d", game.board[y][x]);
+                wattroff(game.windows[BOARD], COLOR_PAIR(game.board[y][x]));
+            }
 }
 
 void display_tetri_game(game_t game)

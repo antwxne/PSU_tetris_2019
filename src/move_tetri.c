@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include "struct.h"
 
-size_tetri_t move_left(char const **board, tetrimino_t tetri)
+size_tetri_t move_left(int const **board, tetrimino_t tetri)
 {
     unsigned int count_y = 0;
     unsigned int count_x = 0;
@@ -21,14 +21,14 @@ size_tetri_t move_left(char const **board, tetrimino_t tetri)
         for (unsigned int x = tetri.pos.x;
             tetri.shape[count_y][count_x] != '\0'; x++, count_x++)
             if (tetri.shape[count_y][count_x] == '*' &&
-                board[y][x - 1] != ' ')
+                board[y][x - 1] != 0)
                 return (tetri.pos);
         count_x = 0;
         }
     return ((size_tetri_t) {tetri.pos.y, tetri.pos.x - 1});
 }
 
-size_tetri_t move_right(char const **board, tetrimino_t tetri)
+size_tetri_t move_right(int const **board, tetrimino_t tetri)
 {
     unsigned int count_y = 0;
     unsigned int count_x = 0;
@@ -40,14 +40,14 @@ size_tetri_t move_right(char const **board, tetrimino_t tetri)
         for (unsigned int x = tetri.pos.x;
             tetri.shape[count_y][count_x] != '\0'; x++, count_x++)
             if (tetri.shape[count_y][count_x] == '*' &&
-                board[y][x + 1] != ' ')
+                board[y][x + 1] != 0)
                 return (tetri.pos);
         count_x = 0;
         }
     return ((size_tetri_t) {tetri.pos.y, tetri.pos.x + 1});
 }
 
-size_tetri_t move_down(char const **board, tetrimino_t tetri)
+size_tetri_t move_down(int const **board, tetrimino_t tetri)
 {
     unsigned int count_y = 0;
     unsigned int count_x = 0;
@@ -58,7 +58,7 @@ size_tetri_t move_down(char const **board, tetrimino_t tetri)
         y++, count_y++) {
         for (unsigned int x = tetri.pos.x;
         tetri.shape[count_y][count_x] != '\0'; x++, count_x++)
-            if (board[y + 1][x] != ' ')
+            if (board[y + 1][x] != 0)
                 return (tetri.pos);
         count_x = 0;
         }

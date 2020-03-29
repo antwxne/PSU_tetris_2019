@@ -69,7 +69,7 @@ typedef struct tetrimino {
 } tetrimino_t;
 
 typedef struct game {
-    char **board;
+    int **board;
     size_tetri_t size_b;
     size_tetri_t size_w;
     unsigned int score;

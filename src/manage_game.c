@@ -21,12 +21,12 @@ int manage_keys(game_t *game, touch_t *touch)
     if (get_key == touch->keys[quit])
         return (1);
     if (get_key == -1)
-        game->tetri[cur].pos = move_down((char const **)game->board,
+        game->tetri[cur].pos = move_down((int const **)game->board,
             game->tetri[cur]);
     return (0);
 }
 
-static bool is_blocked(char const **board, tetrimino_t tetri)
+static bool is_blocked(int const **board, tetrimino_t tetri)
 {
     size_tetri_t check = move_down(board, tetri);
 
@@ -47,7 +47,7 @@ void manage_game(game_t *game, list_t const *list)
 {
     int cur = game->current;
 
-    if (is_blocked((char const **)game->board, game->tetri[cur])) {
+    if (is_blocked((int const **)game->board, game->tetri[cur])) {
             update_board(game, game->tetri[cur]);
             game->tetri[cur] = reload_tetri(*game, game->tetri[cur], list);
             game->current = game->current == 0 ? 1 : 0;
