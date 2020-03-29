@@ -27,17 +27,8 @@ static void manage_window(game_t *game)
 
 int game_loop(game_t game, touch_t touch, list_t *list)
 {
-<<<<<<< HEAD
-    int len = len_list(list);
-
-    if (len == 0)
-        return 84;
-    game.tetri[0] = loading_tetrimino(game, list, len);
-    game.tetri[1] = loading_tetrimino(game, list, len);
-=======
     game.tetri[0] = loading_tetrimino(game, list, game.len_list);
     game.tetri[1] = loading_tetrimino(game, list, game.len_list);
->>>>>>> master
     init_window(&game);
     while (1) {
         manage_window(&game);

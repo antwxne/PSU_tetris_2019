@@ -72,10 +72,6 @@ int switch_key(touch_t *touch, int get, game_t *game)
         game->tetri[cur]);
     if (get == touch->keys[drop])
         game->tetri[cur].pos = move_down((char const **)game->board,
-<<<<<<< HEAD
-                game->tetri[cur].pos, game->tetri[cur].size);
-=======
-            game->tetri[cur]);
->>>>>>> master
+                                         game->tetri[cur]);
     return 0;
 }
