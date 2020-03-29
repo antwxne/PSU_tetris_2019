@@ -27,7 +27,7 @@ static game_t init_game(touch_t touch)
 
     game.size_b = get_size_board(touch.touching[size]);
     game.score = 0;
-    game.level = 1;
+    game.level = my_getnbr(touch.touching[level]);
     game.board = create_board(game.size_b.x, game.size_b.y);
     game.windows  = malloc(sizeof(WINDOW *) * 4);
     game.tetri = malloc(sizeof(tetrimino_t) * 2);

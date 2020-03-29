@@ -15,7 +15,7 @@ int manage_keys(game_t *game, touch_t *touch)
     int get_key = -1;
     int cur = game->current;
 
-    wtimeout(game->windows[TETRIMINO], 1000 - game->level * 10);
+    wtimeout(game->windows[TETRIMINO], 1000 - game->level * 50);
     get_key = wgetch(game->windows[TETRIMINO]);
     switch_key(touch, get_key, game);
     if (get_key == touch->keys[quit])
