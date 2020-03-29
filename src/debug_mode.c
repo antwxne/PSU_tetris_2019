@@ -60,6 +60,8 @@ void original_set(char *pos, char **keys, int change, int i)
 
 void display_debug_mode(touch_t *touch, list_t *list)
 {
+    if (len_list(list) == 0)
+        exit(84);
     my_printf("*** DEBUG MODE ***");
     all_print(touch);
     display_tetriminos(list);
