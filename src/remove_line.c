@@ -31,12 +31,16 @@ static int parse_board(int const **board)
 int **remove_line(int **board, game_t *game)
 {
     int remove = parse_board((int const **) board);
+    static unsigned int count = 0;
 
     if (remove == -1)
         return (board);
     for (; remove > 0; remove--)
         for (int i = 0; board[remove][i] != -1; i++)
             board[remove][i] = board[remove - 1][i];
+    count += 1;
     game->score += 100;
+    game->level = count % 10 == 0 ? game->level + 1 : game->level;
+    count = count % 10 == 0 ? 0 : count;
     return (board);
 }

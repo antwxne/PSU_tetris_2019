@@ -13,8 +13,8 @@ static void manage_window(game_t *game)
 {
     wclear(game->windows[BOARD]);
     wborder(game->windows[BOARD], '|', '|', '-', '-', '+', '+', '+', '+');
-    wborder(game->windows[NEXT], '|', '|', '-', '-', '/', 'a', 's', '/');
-    wborder(game->windows[INFO], '|', '|', '-', '-', '/', 'd', 'f', '/');
+    wborder(game->windows[NEXT], '|', '|', '-', '-', '/', '\\', '\\', '/');
+    wborder(game->windows[INFO], '|', '|', '-', '-', '/', '\\', '\\', '/');
     for (int i = 0; i < 4; i++) {
         touchwin(game->windows[i]);
         wrefresh(game->windows[i]);

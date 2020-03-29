@@ -48,9 +48,17 @@ static void display_next(game_t game)
     wattroff(game.windows[NEXT], COLOR_PAIR(game.tetri[cur].color));
 }
 
+static void display_info(game_t game)
+{
+    mvwprintw(game.windows[INFO], 1, 25 - 2, "INFOS");
+    mvwprintw(game.windows[INFO], 8, 25 - 2, "LEVEL : %u", game.level);
+    mvwprintw(game.windows[INFO], 16, 25 - 2, "SCORE : %u", game.score);
+}
+
 void display_tetri_game(game_t game)
 {
     display_board(game);
     display_moving_tetri(game);
     display_next(game);
+    display_info(game);
 }
