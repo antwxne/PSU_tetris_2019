@@ -8,19 +8,7 @@
 #include <curses.h>
 #include "tetris.h"
 #include "struct.h"
-
-void display_tetri_game(game_t game)
-{
-    int cur = game.current;
-
-    for (int i = 0; game.board[i] != NULL; i++)
-        mvwprintw(game.windows[BOARD], 1 + i, 1, game.board[i]);
-    wattron(game.windows[TETRIMINO], COLOR_PAIR(game.tetri[cur].color));
-    for (int i = 0; game.tetri[cur].shape[i] != NULL; i++)
-        mvwprintw(game.windows[TETRIMINO], game.tetri[cur].pos.y+i,
-        game.tetri[cur].pos.x, game.tetri[cur].shape[i]);
-    wattroff(game.windows[TETRIMINO], COLOR_PAIR(game.tetri[cur].color));
-}
+#include "my.h"
 
 int manage_keys(game_t *game, touch_t *touch)
 {
@@ -34,22 +22,34 @@ int manage_keys(game_t *game, touch_t *touch)
         return (1);
     if (get_key == -1)
         game->tetri[cur].pos = move_down((char const **)game->board,
-        game->tetri[cur].pos, game->tetri[cur].size);
+            game->tetri[cur]);
     return (0);
 }
 
-bool is_blocked(char const **board, size_tetri_t pos, size_tetri_t size)
+static bool is_blocked(char const **board, tetrimino_t tetri)
 {
-    if (board[pos.y + size.y] == NULL)
-        return (false);
-    for (unsigned int i = pos.x; board[pos.y + size.y][i] != '\0' &&
-        i < size.x; i++)
-        if (board[pos.y + size.y][i] != ' ')
-            return (false);
-    return (true);
+    size_tetri_t check = move_down(board, tetri);
+
+    if (check.x == tetri.pos.x && check.y == tetri.pos.y)
+        return (true);
+    return (false);
 }
 
-// void manage_game(game_t *game, list_t const *list)
-// {
-//     if 
-// }
+static tetrimino_t reload_tetri(game_t game, tetrimino_t tetri,
+    list_t const *list)
+{
+    my_free_arr(tetri.shape, 0);
+    tetri = loading_tetrimino(game, list, game.len_list);
+    return (tetri);
+}
+
+void manage_game(game_t *game, list_t const *list)
+{
+    int cur = game->current;
+
+    if (is_blocked((char const **)game->board, game->tetri[cur])) {
+            update_board(game, game->tetri[cur]);
+            game->tetri[cur] = reload_tetri(*game, game->tetri[cur], list);
+            game->current = game->current == 0 ? 1 : 0;
+        }
+}

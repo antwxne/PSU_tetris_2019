@@ -76,6 +76,7 @@ typedef struct game {
     unsigned int level;
     tetrimino_t *tetri;
     WINDOW **windows;
+    int len_list;
     int current;
 } game_t;
 
