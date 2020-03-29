@@ -38,6 +38,8 @@ int game_loop(game_t game, touch_t touch, list_t *list)
 {
     int len = len_list(list);
 
+    if (len == 0)
+        return 84;
     game.tetri[0] = loading_tetrimino(game, list, len);
     game.tetri[1] = loading_tetrimino(game, list, len);
     init_window(&game);
@@ -46,13 +48,6 @@ int game_loop(game_t game, touch_t touch, list_t *list)
         display_tetri_game(game);
         if (manage_keys(&game, &touch))
             break;
-<<<<<<< HEAD
-        if (get == -1)
-            game.tetri.pos = move_down((char const **)game.board,
-            game.tetri.pos, game.tetri.size);
-        get = -1;
-=======
->>>>>>> origin/ncurse_game
     }
     endwin();
     return (0);

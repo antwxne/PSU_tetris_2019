@@ -71,12 +71,7 @@ int switch_key(touch_t *touch, int get, game_t *game)
         game->tetri[cur].pos = move_right((char const **)game->board,
         game->tetri[cur].pos, game->tetri[cur].size);
     if (get == touch->keys[drop])
-<<<<<<< HEAD
-        game->tetri.pos = move_down((char const **)game->board,
-                game->tetri.pos, game->tetri.size);
-=======
         game->tetri[cur].pos = move_down((char const **)game->board,
                 game->tetri[cur].pos, game->tetri[cur].size);
->>>>>>> origin/ncurse_game
     return 0;
 }

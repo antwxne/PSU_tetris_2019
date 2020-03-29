@@ -21,6 +21,7 @@ int main(int ac, char **av)
     check_wrong(ac, av);
     if (find_arg(ac, av, &touch, &list) == 84)
         return 84;
-    game(touch, list);
+    if (game(touch, list) == 84)
+        return 84;
     return 0;
 }
