@@ -22,7 +22,7 @@ bool check_size(char **shape, size_tetri_t size);
 void display_tetriminos(list_t *list);
 void sorting_list(list_t **list);
 void free_tetriminos(list_t *list);
-void init_value(touch_t *touch);
+int init_value(touch_t *touch);
 int find_arg(int ac, char **av, touch_t *touch, list_t **list);
 void helper(void);
 void display_debug_mode(touch_t *touch, list_t *list);

@@ -39,7 +39,7 @@ int game(touch_t touch, list_t *list)
 {
     game_t game = init_game(touch);
 
-    if(len_list(list) == 0)
+    if (len_list(list) == 0)
         exit(84);
     game.len_list = len_list(list);
     if (game.board == NULL || game.windows == NULL

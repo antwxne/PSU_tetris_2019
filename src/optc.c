@@ -30,11 +30,12 @@ static const struct option long_options [12] = {
         {0, 0, 0, 0}
 };
 
-void init_value(touch_t *touch)
+int init_value(touch_t *touch)
 {
     int terminal = 0;
 
-    setupterm(NULL, 0, &terminal);
+    if (setupterm(NULL, 1, &terminal) == -1)
+        return 84;
     touch->touching = malloc((sizeof(char *)) * 9);
     touch->change = malloc(sizeof(int) * 4);
     touch->change[0] = 0;
@@ -51,6 +52,7 @@ void init_value(touch_t *touch)
     touch->touching[size] = "20*10";
     touch->print_debug = 0;
     touch->next_hide = 0;
+    return 0;
 }
 
 static void choosing3(int opt, touch_t *touch)
