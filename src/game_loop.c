@@ -34,7 +34,6 @@ int game_loop(game_t game, touch_t touch, list_t *list)
         display_tetri_game(game, touch);
         if (manage_keys(&game, &touch))
             break;
-        
     }
     endwin();
     my_putstr("You loose\n");

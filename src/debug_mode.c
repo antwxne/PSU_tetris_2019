@@ -17,7 +17,7 @@ void error_size(char *str)
 {
     int i = 0;
 
-    while (str[i] != 0) {
+    for (;str[i] != 0;) {
         if ((str[i] >= '0' && str[i] <= '9') || str[i] == ',') {
             if (str[i] == ',')
                 str[i] = '*';

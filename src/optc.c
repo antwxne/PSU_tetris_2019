@@ -15,7 +15,7 @@
 #include "tetris.h"
 #include "struct.h"
 
-static const struct option long_options [12] = {
+static const struct option long_options[12] = {
         {"help", no_argument, NULL, 'h'},
         {"level=", required_argument, NULL, 'L'},
         {"key-left=", required_argument, NULL, 'l'},
@@ -57,7 +57,7 @@ int init_value(touch_t *touch)
 
 static void choosing3(int opt, touch_t *touch)
 {
-    switch(opt) {
+    switch (opt) {
     case 'd':
         error_optarg(optarg);
         touch->touching[drop] = optarg;
@@ -80,7 +80,7 @@ static void choosing3(int opt, touch_t *touch)
 
 static void choosing2(int opt, touch_t *touch)
 {
-    switch(opt) {
+    switch (opt) {
     case 'L':
         level_erro(optarg);
         touch->touching[level] = optarg;
@@ -103,7 +103,7 @@ static void choosing2(int opt, touch_t *touch)
 
 static void choosing(int opt, touch_t *touch)
 {
-    switch(opt) {
+    switch (opt) {
     case 'h':
         helper();
         exit(0);

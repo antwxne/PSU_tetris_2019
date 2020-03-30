@@ -14,7 +14,7 @@ int main(int ac, char **av, char **env)
 {
     touch_t touch;
     list_t *list = NULL;
-    
+
     if (env[0] == NULL)
         return 84;
     srand(time(NULL));
