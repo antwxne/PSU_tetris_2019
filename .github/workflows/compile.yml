@@ -13,5 +13,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - run: sudo apt-get install libncurses5-dev libncursesw5-dev
     - name: make
       run: make
