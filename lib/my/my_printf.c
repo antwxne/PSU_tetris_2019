@@ -7,8 +7,6 @@
 
 #include <stdio.h>
 #include <stdarg.h>
-#include <criterion/criterion.h>
-#include <criterion/redirect.h>
 
 void my_putchar(char c);
 
