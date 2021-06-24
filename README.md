@@ -13,9 +13,8 @@ You have to use ncurses.
 
 ### Ncurses library
 
-the [installation guide](https://invisible-island.net/ncurses/)
+To install ncurses library please refer to the [installation guide](https://invisible-island.net/ncurses/)
 
-To install ncurses library please refer to
 ## Build and run
 
 Linux:
@@ -44,6 +43,7 @@ arrow)
 ```
 
 Tetriminos shapes are in `tetriminos` folder.
+
 Example:
 ```
 2 3 6
