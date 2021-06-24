@@ -3,7 +3,7 @@
 >The goal of this project is to recreate the Tetris game in a UNIX terminal, with the Gameboy version rules.
 You have to use ncurses.
 
-##Preview
+## Preview
 <p align="center">
   <img src=".github/readme_resources/game_preview.png" alt="game preview">
 </p>
