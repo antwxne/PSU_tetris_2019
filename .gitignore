@@ -1,0 +1,6 @@
+*.o
+tetris
+*.a
+*.so
+.idea
+.vscode
