@@ -1,4 +1,4 @@
-# Tetris
+# Tetris ![c](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)
 
 >The goal of this project is to recreate the Tetris game in a UNIX terminal, with the Gameboy version rules.
 You have to use ncurses.
